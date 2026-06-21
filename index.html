@@ -206,6 +206,21 @@
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
             font-size: 0.9em;
         }
+
+        .badge-link {
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+        .badge-link:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-logo {
+            transition: transform 0.3s ease;
+        }
+        .contact-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
     </style>
 </head>
 
@@ -243,12 +258,15 @@
                 <p>Twitter(X)のURLから、ツイートのスクリーンショット画像をDiscordに送信する小さなBotを作ってみました。</p>
 
                 <div class="badges">
-                    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"
-                        alt="Python">
-                    <img src="https://img.shields.io/badge/Discord.py-5865F2?style=for-the-badge&logo=discord&logoColor=white"
-                        alt="Discord">
-                    <img src="https://img.shields.io/badge/tweetcapture-000000?style=for-the-badge&logo=github&logoColor=white"
-                        alt="tweetcapture">
+                    <a href="https://www.python.org/" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+                    </a>
+                    <a href="https://discordpy.readthedocs.io/" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/Discord.py-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
+                    </a>
+                    <a href="https://github.com/Xacnio/tweetcapture" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/tweetcapture-000000?style=for-the-badge&logo=github&logoColor=white" alt="tweetcapture">
+                    </a>
                 </div>
 
                 <ul>
@@ -264,12 +282,15 @@
                 <p>Discordでのコミュニケーションを少し便利にしたくて、X(Twitter)のリンクを検知して翻訳するBotを作成しました。</p>
 
                 <div class="badges">
-                    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"
-                        alt="Python">
-                    <img src="https://img.shields.io/badge/Discord.py-5865F2?style=for-the-badge&logo=discord&logoColor=white"
-                        alt="Discord">
-                    <img src="https://img.shields.io/badge/aiohttp-2C5BB4?style=for-the-badge&logo=aiohttp&logoColor=white"
-                        alt="aiohttp">
+                    <a href="https://www.python.org/" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+                    </a>
+                    <a href="https://discordpy.readthedocs.io/" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/Discord.py-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
+                    </a>
+                    <a href="https://docs.aiohttp.org/" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/aiohttp-2C5BB4?style=for-the-badge&logo=aiohttp&logoColor=white" alt="aiohttp">
+                    </a>
                 </div>
 
                 <ul>
@@ -306,6 +327,16 @@
                         <li>ゲーム、読書</li>
                     </ul>
                 </div>
+            </div>
+        </section>
+
+        <section class="fade-in" style="animation-delay: 0.7s;">
+            <h2>Contact</h2>
+            <div style="text-align: center; margin: 30px 0;">
+                <p>ご連絡はこちらまでお気軽にどうぞ！</p>
+                <a href="https://discord.com/users/533128660044218408" target="_blank" style="display: inline-block; margin-top: 10px;">
+                    <img src="https://raw.githubusercontent.com/SAWARATSUKI/KawaiiLogos/main/Discord/Discord.png" class="contact-logo" height="60" alt="Discord">
+                </a>
             </div>
         </section>
 
