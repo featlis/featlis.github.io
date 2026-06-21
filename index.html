@@ -215,11 +215,40 @@
             transform: scale(1.05);
         }
 
-        .contact-logo {
-            transition: transform 0.3s ease;
+        .contact-card {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 24px;
+            margin-top: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        .contact-logo:hover {
-            transform: scale(1.1) rotate(5deg);
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--hover-shadow);
+            border-color: var(--accent-color);
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-left: 15px;
+        }
+        .service-name {
+            font-size: 0.85em;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-weight: bold;
+        }
+        .account-id {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--accent-color);
         }
     </style>
 </head>
@@ -334,8 +363,12 @@
             <h2>Contact</h2>
             <div style="text-align: center; margin: 30px 0;">
                 <p>ご連絡はこちらまでお気軽にどうぞ！</p>
-                <a href="https://discord.com/users/533128660044218408" target="_blank" style="display: inline-block; margin-top: 10px;">
-                    <img src="https://img.icons8.com/fluency/96/discord-logo.png" class="contact-logo" height="60" alt="Discord">
+                <a href="https://discord.com/users/533128660044218408" target="_blank" class="contact-card">
+                    <img src="https://img.icons8.com/fluency/96/discord-logo.png" height="40" alt="Discord">
+                    <div class="contact-info">
+                        <span class="service-name">Discord</span>
+                        <span class="account-id">featlis</span>
+                    </div>
                 </a>
             </div>
         </section>
