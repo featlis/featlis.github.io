@@ -215,6 +215,31 @@
             transform: scale(1.05);
         }
 
+        .bot-page-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(255, 101, 132, 0.3);
+        }
+        .bot-page-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(255, 101, 132, 0.4);
+            background-color: #ff4d71;
+        }
+
+        .highlight-card {
+            text-align: center;
+            border-color: var(--accent-color);
+            background-color: #fff5f8;
+            border-width: 2px;
+        }
+
         .contact-card {
             display: inline-flex;
             align-items: center;
@@ -281,6 +306,12 @@
 
         <section class="fade-in">
             <h2>Projects</h2>
+
+            <div class="card highlight-card">
+                <h3 style="color: var(--accent-color); font-size: 1.4em; margin-top: 0;">🤖 Discord BOT 配布ページ</h3>
+                <p>自作のDiscord BOTの導入リンクや、詳細な使い方・設定方法などは<br>こちらの専用ページにまとめています！</p>
+                <a href="https://featlis.github.io/featlis-discordbot/" target="_blank" class="bot-page-btn">配布ページへ行く ✨</a>
+            </div>
 
             <div class="card">
                 <h3>PrintTweet for Discord</h3>
