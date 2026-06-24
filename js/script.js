@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+// アニメーションなどの初期化処理
+function initPage() {
     // 1. スクロールに応じたカードのフェードインアニメーション
     const observerOptions = {
         threshold: 0.1,
@@ -23,28 +24,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. メインタイトルのタイピングエフェクト
     const title = document.querySelector('.typing-effect');
-    const text = title.textContent;
-    title.textContent = '';
-    
-    let i = 0;
-    const typeWriter = () => {
-        if (i < text.length) {
-            title.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 100);
-        } else {
-            // タイピング完了後、カーソルの点滅(border)を消す
-            setTimeout(() => {
-                title.style.borderRight = 'none';
-            }, 1000);
-        }
-    };
-    
-    // 少し待ってからタイピング開始
-    setTimeout(typeWriter, 300);
+    if (title) {
+        const text = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                title.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                // タイピング完了後、カーソルの点滅(border)を消す
+                setTimeout(() => {
+                    title.style.borderRight = 'none';
+                }, 1000);
+            }
+        };
+        
+        // 少し待ってからタイピング開始
+        setTimeout(typeWriter, 300);
+    }
 
-    // 3. 背景でゆっくり動く幾何学パーティクル
+    // リンクのイベントリスナー再設定
+    bindPjaxLinks();
+}
+
+// パーティクルの初期化（1回のみ）
+function initParticles() {
     const canvas = document.getElementById('particles');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     
     canvas.width = window.innerWidth;
@@ -84,11 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    const initParticles = () => {
-        for (let i = 0; i < 50; i++) {
-            particlesArray.push(new Particle());
-        }
-    };
+    for (let i = 0; i < 50; i++) {
+        particlesArray.push(new Particle());
+    }
     
     const animateParticles = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -99,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animateParticles);
     };
     
-    initParticles();
     animateParticles();
     
     // リサイズ対応
@@ -107,4 +113,111 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
+}
+
+// PJAX: リンクのクリックイベント設定
+function bindPjaxLinks() {
+    document.querySelectorAll('a').forEach(link => {
+        // すでにバインド済みかチェック、または外部・別タブリンクは除外
+        if (link.dataset.pjaxBound || link.target === "_blank" || !link.href.startsWith(window.location.origin)) {
+            return;
+        }
+
+        // HTMLページへの遷移のみを処理
+        if (link.href.endsWith('.html') || link.href.endsWith('/')) {
+            link.dataset.pjaxBound = 'true';
+            link.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await loadPage(link.href, true);
+            });
+        }
+    });
+}
+
+// ページコンテンツの読み込みと差し替え
+async function loadPage(url, pushState = true) {
+    const currentContainer = document.querySelector('.container');
+    const currentSideNav = document.querySelector('.side-nav');
+
+    // フェードアウト
+    if (currentContainer) currentContainer.style.opacity = '0';
+    if (currentSideNav) currentSideNav.style.opacity = '0';
+
+    try {
+        const response = await fetch(url);
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        const newContainer = doc.querySelector('.container');
+        const newSideNav = doc.querySelector('.side-nav');
+
+        // タイトルの更新
+        document.title = doc.title;
+
+        // フェードアウトの完了を少し待つ
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        // DOMの差し替え
+        if (newContainer) {
+            newContainer.style.opacity = '0';
+            newContainer.style.transition = 'opacity 0.3s ease';
+            if (currentContainer) {
+                currentContainer.replaceWith(newContainer);
+            } else {
+                document.body.insertBefore(newContainer, document.querySelector('script'));
+            }
+        }
+
+        if (newSideNav) {
+            newSideNav.style.opacity = '0';
+            newSideNav.style.transition = 'opacity 0.3s ease';
+            if (currentSideNav) {
+                currentSideNav.replaceWith(newSideNav);
+            } else {
+                document.body.insertBefore(newSideNav, document.querySelector('script'));
+            }
+        } else if (currentSideNav) {
+            currentSideNav.remove();
+        }
+
+        if (pushState) {
+            history.pushState(null, '', url);
+        }
+
+        window.scrollTo(0, 0);
+
+        // 新しいDOM要素のフェードイン準備
+        // 少し遅延させてから opacity = 1 にする
+        setTimeout(() => {
+            const finalContainer = document.querySelector('.container');
+            const finalSideNav = document.querySelector('.side-nav');
+            if (finalContainer) finalContainer.style.opacity = '1';
+            if (finalSideNav) finalSideNav.style.opacity = '1';
+            
+            // ページ初期化処理を再実行
+            initPage();
+        }, 50);
+
+    } catch (error) {
+        console.error('Page load error:', error);
+        window.location.href = url; // フォールバック
+    }
+}
+
+// 戻る/進むボタン(popstate)のハンドリング
+window.addEventListener('popstate', () => {
+    loadPage(window.location.href, false);
+});
+
+// 初回ロード時
+document.addEventListener('DOMContentLoaded', () => {
+    // .container と .side-nav にトランジションを仕込んでおく
+    const c = document.querySelector('.container');
+    const s = document.querySelector('.side-nav');
+    if(c) c.style.transition = 'opacity 0.3s ease';
+    if(s) s.style.transition = 'opacity 0.3s ease';
+
+    initParticles();
+    initPage();
 });
