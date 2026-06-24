@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrintTweet - Featlis Discord Bots</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+</head>
+<body>
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+        <header class="fade-in">
+            <h1 class="typing-effect">PrintTweet</h1>
+            <p class="subtitle">指定したツイートをDiscord内に綺麗に埋め込んで表示するBot</p>
+        </header>
+
+        <main>
+            <div class="card bot-detail fade-in-up">
+                <div class="card-icon"><i class="fa-solid fa-print"></i></div>
+                <h2>機能紹介</h2>
+                <p>Twitter(X)のURLをスラッシュコマンドで渡すと、ツイートのスクリーンショット画像を返すDiscord Botです。</p>
+                <p>tweetcaptureを使用して余白のない綺麗な画像を生成し、RT・いいね数・タイムスタンプ等すべての情報を表示します。</p>
+                
+                <h3 style="margin-top: 20px; color: var(--accent-color); border-bottom: 1px dashed var(--border-color); padding-bottom: 5px;">主なコマンド</h3>
+                <ul style="list-style: inside; margin-bottom: 20px; color: #444; text-align: left; padding: 10px;">
+                    <li><code>/print url:&lt;URL&gt; theme:&lt;テーマ&gt;</code> - ツイートのURLを指定して画像化。テーマは「ライトモード」「ダークモード」「ブラックモード」から選べます。</li>
+                </ul>
+
+                <div class="badges">
+                    <a href="https://www.python.org/" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+                    </a>
+                    <a href="https://discordpy.readthedocs.io/" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/Discord.py-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
+                    </a>
+                    <a href="https://github.com/Xacnio/tweetcapture" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/tweetcapture-000000?style=for-the-badge&logo=github&logoColor=white" alt="tweetcapture">
+                    </a>
+                </div>
+                <div class="card-actions" style="margin-top: 30px;">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1517826170408665088" target="_blank" class="btn btn-invite">
+                        <i class="fa-solid fa-robot"></i> 導入する
+                    </a>
+                    <a href="index.html" class="btn btn-back">
+                        <i class="fa-solid fa-arrow-left"></i> 戻る
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Featlis. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- サイドナビゲーション -->
+    <nav class="side-nav">
+        <a href="featlis-discordbot.html" class="side-nav-item"><i class="fa-solid fa-house"></i> トップページ</a>
+        <a href="twitter-translate-bot.html" class="side-nav-item"><i class="fa-solid fa-language"></i> TranslateBOT</a>
+        <a href="find-trends.html" class="side-nav-item"><i class="fa-solid fa-chart-line"></i> FindTrends</a>
+        <a href="time-signal.html" class="side-nav-item"><i class="fa-solid fa-clock"></i> TimeSignal</a>
+        <a href="print-tweet.html" class="side-nav-item active"><i class="fa-solid fa-print"></i> PrintTweet</a>
+        <a href="index.html" class="side-nav-item portfolio"><i class="fa-solid fa-arrow-left"></i> ポートフォリオへ戻る</a>
+    </nav>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
