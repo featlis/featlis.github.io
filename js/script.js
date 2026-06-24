@@ -139,9 +139,8 @@ async function loadPage(url, pushState = true) {
     const currentContainer = document.querySelector('.container');
     const currentSideNav = document.querySelector('.side-nav');
 
-    // フェードアウト
+    // コンテナは常にフェードアウト
     if (currentContainer) currentContainer.style.opacity = '0';
-    if (currentSideNav) currentSideNav.style.opacity = '0';
 
     try {
         const response = await fetch(url);
@@ -152,13 +151,18 @@ async function loadPage(url, pushState = true) {
         const newContainer = doc.querySelector('.container');
         const newSideNav = doc.querySelector('.side-nav');
 
+        // 次のページにサイドナビがない場合は、現在のサイドナビをフェードアウト
+        if (currentSideNav && !newSideNav) {
+            currentSideNav.style.opacity = '0';
+        }
+
         // タイトルの更新
         document.title = doc.title;
 
         // フェードアウトの完了を少し待つ
         await new Promise(resolve => setTimeout(resolve, 300));
 
-        // DOMの差し替え
+        // DOMの差し替え: コンテナ
         if (newContainer) {
             newContainer.style.opacity = '0';
             newContainer.style.transition = 'opacity 0.3s ease';
@@ -169,15 +173,21 @@ async function loadPage(url, pushState = true) {
             }
         }
 
+        // DOMの差し替え: サイドナビ
         if (newSideNav) {
-            newSideNav.style.opacity = '0';
-            newSideNav.style.transition = 'opacity 0.3s ease';
             if (currentSideNav) {
+                // 両方ある場合はフェードさせず、opacityを維持したまま瞬時に差し替え
+                newSideNav.style.opacity = '1';
+                newSideNav.style.transition = 'opacity 0.3s ease';
                 currentSideNav.replaceWith(newSideNav);
             } else {
+                // 前のページにサイドナビがなかった場合はフェードインさせる
+                newSideNav.style.opacity = '0';
+                newSideNav.style.transition = 'opacity 0.3s ease';
                 document.body.insertBefore(newSideNav, document.querySelector('script'));
             }
         } else if (currentSideNav) {
+            // 次のページにサイドナビがない場合は削除
             currentSideNav.remove();
         }
 
@@ -188,12 +198,13 @@ async function loadPage(url, pushState = true) {
         window.scrollTo(0, 0);
 
         // 新しいDOM要素のフェードイン準備
-        // 少し遅延させてから opacity = 1 にする
         setTimeout(() => {
             const finalContainer = document.querySelector('.container');
             const finalSideNav = document.querySelector('.side-nav');
             if (finalContainer) finalContainer.style.opacity = '1';
-            if (finalSideNav) finalSideNav.style.opacity = '1';
+            
+            // サイドナビが新しく追加された場合のみフェードイン（すでに両方あった場合は1のまま）
+            if (finalSideNav && !currentSideNav) finalSideNav.style.opacity = '1';
             
             // ページ初期化処理を再実行
             initPage();
