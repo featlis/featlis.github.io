@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TimeSignal - Featlis Discord Bots</title>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
 </head>
+
 <body>
     <canvas id="particles"></canvas>
 
@@ -25,8 +29,10 @@
                 <h2>機能紹介</h2>
                 <p>毎時00分ぴったりにDiscordの指定チャンネルに時報（「〇〇時をお知らせします」）を送信するBotです。</p>
                 <p>サーバーマシンのシステム時刻のズレを防ぐため、外部のNTPサーバーから正確な時刻を取得し、ミリ秒単位で自動補正する機能が組み込まれています。</p>
-                
-                <h3 style="margin-top: 20px; color: var(--accent-color); border-bottom: 1px dashed var(--border-color); padding-bottom: 5px;">主なコマンド（管理者のみ）</h3>
+
+                <h3
+                    style="margin-top: 20px; color: var(--accent-color); border-bottom: 1px dashed var(--border-color); padding-bottom: 5px;">
+                    主なコマンド（管理者のみ）</h3>
                 <ul style="list-style: inside; margin-bottom: 20px; color: #444; text-align: left; padding: 10px;">
                     <li><code>/set_signal_channel</code> - コマンドを実行したチャンネルを時報送信先に設定</li>
                     <li><code>/stop_signal</code> / <code>/resume_signal</code> - 時報の一時停止と再開</li>
@@ -36,20 +42,24 @@
 
                 <div class="badges">
                     <a href="https://www.python.org/" target="_blank" class="badge-link">
-                        <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+                        <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"
+                            alt="Python">
                     </a>
                     <a href="https://discordpy.readthedocs.io/" target="_blank" class="badge-link">
-                        <img src="https://img.shields.io/badge/Discord.py-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
+                        <img src="https://img.shields.io/badge/Discord.py-5865F2?style=for-the-badge&logo=discord&logoColor=white"
+                            alt="Discord">
                     </a>
                     <a href="https://pypi.org/project/ntplib/" target="_blank" class="badge-link">
-                        <img src="https://img.shields.io/badge/ntplib-000000?style=for-the-badge&logo=python&logoColor=white" alt="ntplib">
+                        <img src="https://img.shields.io/badge/ntplib-000000?style=for-the-badge&logo=python&logoColor=white"
+                            alt="ntplib">
                     </a>
                 </div>
                 <div class="card-actions" style="margin-top: 30px;">
-                    <a href="https://discord.com/oauth2/authorize?client_id=1517572707246411869" target="_blank" class="btn btn-invite">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1517572707246411869" target="_blank"
+                        class="btn btn-invite">
                         <i class="fa-solid fa-robot"></i> 導入する
                     </a>
-                    <a href="index.html" class="btn btn-back">
+                    <a href="featlis-discordbot.html" class="btn btn-back">
                         <i class="fa-solid fa-arrow-left"></i> 戻る
                     </a>
                 </div>
@@ -73,4 +83,5 @@
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
