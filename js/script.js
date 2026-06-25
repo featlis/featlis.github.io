@@ -123,8 +123,8 @@ function bindPjaxLinks() {
             return;
         }
 
-        // HTMLページへの遷移のみを処理
-        if (link.href.endsWith('.html') || link.href.endsWith('/')) {
+        // HTMLページへの遷移のみを処理 (拡張子がない、または '/' で終わる)
+        if (!link.pathname.match(/\.[a-zA-Z0-9]+$/) || link.pathname.endsWith('/')) {
             link.dataset.pjaxBound = 'true';
             link.addEventListener('click', async (e) => {
                 e.preventDefault();
