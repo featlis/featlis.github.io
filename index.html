@@ -61,11 +61,56 @@
         <section class="fade-in">
             <h2>Projects</h2>
 
-            <div class="card highlight-card">
-                <h3 style="color: var(--accent-color); font-size: 1.4em; margin-top: 0;">🤖 Discord BOT 配布ページ</h3>
-                <p>自作のDiscord BOTの導入リンクや、詳細な使い方・設定方法などは<br>こちらの専用ページにまとめています！</p>
-                <a href="featlis-discordbot" class="bot-page-btn">配布ページへ行く
-                    ✨</a>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <div class="card highlight-card app-highlight" style="margin-top: 0;">
+                    <h3 style="color: #8e44ad; font-size: 1.4em; margin-top: 0;">💻 アプリケーション配布ページ</h3>
+                    <p>自作Windowsデスクトップアプリ（ClipFlyout等）の機能紹介やダウンロードはこちら！</p>
+                    <a href="featlis-apps" class="app-page-btn">アプリ配布ページへ行く ✨</a>
+                </div>
+
+                <div class="card highlight-card" style="margin-top: 0;">
+                    <h3 style="color: var(--accent-color); font-size: 1.4em; margin-top: 0;">🤖 Discord BOT 配布ページ</h3>
+                    <p>自作Discord BOTの導入リンクや、詳細な使い方・設定方法はこちらの専用ページに！</p>
+                    <a href="featlis-discordbot" class="bot-page-btn">Bot配布ページへ行く ✨</a>
+                </div>
+            </div>
+
+            <div class="card" style="margin-bottom: 30px;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px; flex-wrap: wrap;">
+                    <img src="assets/clipflyout/app-icon.png" alt="ClipFlyout Icon" style="width: 48px; height: 48px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <h3 style="margin: 0; font-size: 1.4em;">ClipFlyout</h3>
+                </div>
+                <p>Windows 11 Fluent Design（本物のアクリル効果）に最適化された、クリップボード連携・即時アクションユーティリティ。作業中のウィンドウからフォーカスを奪わず、1クリックでカラー変換・JSON整形・タイムスタンプ変換などを実行可能です。</p>
+
+                <div class="badges">
+                    <a href="https://dotnet.microsoft.com/" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/.NET-9.0%20WPF-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 9.0">
+                    </a>
+                    <a href="https://learn.microsoft.com/dotnet/csharp/" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white" alt="C#">
+                    </a>
+                    <a href="https://github.com/featlis/ClipFlyout" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/Windows_11-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows 11">
+                    </a>
+                    <a href="https://github.com/featlis/ClipFlyout/blob/main/LICENSE" target="_blank" class="badge-link">
+                        <img src="https://img.shields.io/badge/License-GPLv3-green.svg?style=for-the-badge" alt="GPLv3">
+                    </a>
+                </div>
+
+                <ul>
+                    <li><strong>本物のアクリル効果 & タスクバーウィジェット</strong>: Windows 11 DWM トランジェントアクリルを採用。タスクバー近傍にシームレスに最新コピー内容を表示し、ワンクリックで展開。</li>
+                    <li><strong>13種類以上のデータ型自動判定</strong>: HEXカラー、Unixタイムスタンプ、JSON、Web URL、クリーンURL、Base64、CSV/TSV等の即時変換と「自動ペースト連携」。</li>
+                    <li><strong>完全ローカル処理 & プライバシー保護</strong>: パスワード管理ツール（1Password, Bitwarden, KeePass等）からのコピーは自動検知して除外。</li>
+                </ul>
+
+                <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="clipflyout" class="btn btn-detail" style="background-color: #8e44ad;">
+                        <i class="fa-solid fa-circle-info"></i> 詳細・ダウンロードページ
+                    </a>
+                    <a href="https://github.com/featlis/ClipFlyout" target="_blank" class="btn btn-github">
+                        <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                </div>
             </div>
 
             <div class="card">
@@ -131,6 +176,7 @@
                 <div class="skill-category">
                     <h3>💻 プログラミング / 開発</h3>
                     <ul>
+                        <li>C# / .NET (WPF デスクトップアプリ開発)</li>
                         <li>Python (データ分析、Discord Bot開発)</li>
                         <li>Unity (VRChatワールド構築、アバター改変)</li>
                     </ul>

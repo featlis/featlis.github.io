@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClipFlyout - Windows 11 クリップボード連携ユーティリティ | Featlis</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+</head>
+
+<body>
+    <!-- 幾何学的な動的パーティクルを描画するキャンバス -->
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+        <header class="fade-in">
+            <div style="text-align: center; margin-bottom: 10px;">
+                <img src="assets/clipflyout/app-icon.png" alt="ClipFlyout Icon" class="app-icon-img">
+            </div>
+            <h1 class="typing-effect">ClipFlyout</h1>
+            <p class="subtitle">Windows 11 Fluent Design に最適化された、クリップボード連携・即時アクションユーティリティ</p>
+            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="featlis-apps" class="btn btn-portfolio" style="background-color: #8e44ad;">
+                    <i class="fa-solid fa-layer-group"></i> アプリ一覧に戻る
+                </a>
+                <a href="/" class="btn btn-back">
+                    <i class="fa-solid fa-house"></i> ポートフォリオへ
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero / Download Section -->
+            <section class="card fade-in-up app-hero" style="margin-bottom: 35px;">
+                <h2 style="border-bottom: none; margin-top: 0; font-size: 1.8rem;">ダウンロード & 配布</h2>
+                <p style="max-width: 700px; margin: 0 auto 15px; color: #555;">
+                    コピーした内容に応じて最適な整形や変換アクションを画面端のすりガラスフライアウトで提案。<br>
+                    作業フォーカスを奪わず、タイピングやブラウジングを中断することなく1クリックで実行できます。
+                </p>
+
+                <div class="badges" style="margin: 10px 0 20px;">
+                    <span class="badge-link"><img src="https://img.shields.io/badge/Version-1.0.0-blue.svg?style=flat-square" alt="Version 1.0.0"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/Platform-Windows%2011%20%7C%2010%20(x64)-0078D4.svg?style=flat-square&logo=windows&logoColor=white" alt="Windows 11 | 10"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/.NET-9.0%20WPF-512BD4.svg?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 9.0"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/License-GPLv3-green.svg?style=flat-square" alt="GPLv3"></span>
+                </div>
+
+                <div class="download-cta-group">
+                    <a href="https://github.com/featlis/ClipFlyout/releases/latest" target="_blank" class="btn btn-download-primary">
+                        <i class="fa-solid fa-download"></i> 最新インストーラー版 (.exe)
+                    </a>
+                    <a href="https://github.com/featlis/ClipFlyout/releases/latest" target="_blank" class="btn btn-download-secondary">
+                        <i class="fa-solid fa-file-zipper"></i> ポータブル版 (.zip)
+                    </a>
+                    <a href="https://github.com/featlis/ClipFlyout" target="_blank" class="btn btn-github">
+                        <i class="fa-brands fa-github"></i> GitHub リポジトリ
+                    </a>
+                </div>
+                <p style="font-size: 0.85rem; color: #888; margin-top: 10px; margin-bottom: 0;">
+                    ※ Windows 11 / 10 (x64) 対応。管理者権限不要でインストール可能です。
+                </p>
+            </section>
+
+            <!-- Preview Screenshot -->
+            <section class="fade-in-up" style="margin-bottom: 40px; text-align: center;">
+                <h2 style="margin-bottom: 20px;">デスクトップ プレビュー</h2>
+                <div class="app-preview-wrapper">
+                    <img src="assets/clipflyout/preview.jpg" alt="ClipFlyout Preview" class="app-preview-img">
+                </div>
+                <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
+                    Windows 11 DWM トランジェントアクリルによる本物のすりガラス背景と、タスクバー直結ウィジェット
+                </p>
+            </section>
+
+            <!-- Features -->
+            <section class="fade-in-up" style="margin-bottom: 40px;">
+                <h2>主な機能と特徴</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h3><i class="fa-solid fa-wand-magic-sparkles"></i> 本物のアクリル効果</h3>
+                        <p>Windows 11 DWM（デスクトップウィンドウマネージャー）のトランジェントアクリルを採用。なめらかなすりガラス背景とダーク/ライトテーマ自動追従に対応しています。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3><i class="fa-solid fa-table-columns"></i> タスクバー直結ウィジェット</h3>
+                        <p>直近のコピー内容をタスクバー近傍にシームレス表示。枠線のない自然なデザインで、クリックするだけでいつでもフライアウトを呼び出せます。位置調整スライダー付き。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3><i class="fa-solid fa-bolt"></i> 1クリック即時アクション</h3>
+                        <p>カラーコード、UNIX時間、JSON、URL等を自動判別。変換アクション実行後は、次のフライアウトに「ペースト」ボタンが自動提示され作業が滞りません。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3><i class="fa-solid fa-shield-halved"></i> 100% ローカル & プライバシー保護</h3>
+                        <p>データは完全ローカル処理。1PasswordやBitwarden、KeePassなどのパスワード管理ツールからのコピーは自動検知して除外するため安全です。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3><i class="fa-solid fa-compass"></i> 初回セットアップウィザード</h3>
+                        <p>初回起動時に親しみやすいウェルカム画面が表示され、「既定値で使用する」をクリックするだけで最適な初期設定ですぐに使い始められます。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3><i class="fa-solid fa-sliders"></i> 洗練された設定画面</h3>
+                        <p>PowerToys スタイルのアイコンプレート付きカードUI。フライアウトの位置・透明度・アクセントカラーのカスタマイズやインライン更新確認に対応。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Supported Data Types Table -->
+            <section class="fade-in-up" style="margin-bottom: 40px;">
+                <h2>対応データ型とアクション一覧</h2>
+                <p style="color: #555; margin-bottom: 15px;">クリップボードの内容を自動判別し、文脈に応じた適切な操作をワンクリックで提供します：</p>
+                
+                <div class="app-table-container">
+                    <table class="app-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">データ型</th>
+                                <th style="width: 30%;">検出条件</th>
+                                <th style="width: 45%;">提供される主なアクション</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>🎨 HEX カラー</strong></td>
+                                <td><code>#RGB</code>, <code>#RRGGBB</code>, <code>#AARRGGBB</code></td>
+                                <td>色見本プレビュー、RGB / HSL / RGBA 変換コピー</td>
+                            </tr>
+                            <tr>
+                                <td><strong>⏱️ Unix タイムスタンプ</strong></td>
+                                <td>10桁 (秒) / 13桁 (ミリ秒) 数値</td>
+                                <td>ローカル日時、UTC ISO 8601 変換、現在Epochコピー</td>
+                            </tr>
+                            <tr>
+                                <td><strong>📦 JSON テキスト</strong></td>
+                                <td><code>{...}</code> または <code>[...]</code></td>
+                                <td>インデント整形コピー、1行化 (Minify) コピー</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🌐 Web URL</strong></td>
+                                <td><code>http://</code> または <code>https://</code></td>
+                                <td>既定ブラウザで開く、QRコード画像生成、ドメインコピー</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🧹 クリーンURL</strong></td>
+                                <td>UTMトラッカーや <code>fbclid</code> を含むURL</td>
+                                <td>追跡パラメータを除去したクリーンURLのコピー</td>
+                            </tr>
+                            <tr>
+                                <td><strong>✉️ メールアドレス</strong></td>
+                                <td>メール形式文字列</td>
+                                <td>既定メールアプリ起動、ドメインコピー、ユーザー名コピー</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🔒 Base64 / Data URI</strong></td>
+                                <td>Base64エンコード文字列</td>
+                                <td>プレーンテキストへの復号、画像データとしての直接展開</td>
+                            </tr>
+                            <tr>
+                                <td><strong>📊 表データ (CSV/TSV)</strong></td>
+                                <td>Excel/スプレッドシートの区切りテキスト</td>
+                                <td>Markdownテーブル表への整形、JSON配列への変換</td>
+                            </tr>
+                            <tr>
+                                <td><strong>💻 コードスニペット</strong></td>
+                                <td>プログラム構文・インデント</td>
+                                <td>インデント正規化 (スペース2文字)、HTML文字エスケープ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🔤 識別子ケース変換</strong></td>
+                                <td>camelCase, snake_case, PascalCase, kebab-case</td>
+                                <td>各命名規則間の相互変換コピー</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🔑 JWT トークン</strong></td>
+                                <td>JWT 署名付きトークン</td>
+                                <td>クレームペイロード (JSON) のデコード展開</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🖼️ クリップボード画像</strong></td>
+                                <td>スクリーンショットやコピー画像</td>
+                                <td>解像度・縦横比情報の確認、PNGファイルとして直接保存</td>
+                            </tr>
+                            <tr>
+                                <td><strong>📝 プレーンテキスト</strong></td>
+                                <td>一般的な文字列</td>
+                                <td>空白トリム、文字数/単語数/行数カウント、大文字/小文字化</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Usage & Shortcuts -->
+            <section class="fade-in-up" style="margin-bottom: 40px;">
+                <h2>使い方とショートカット</h2>
+                <div class="card" style="padding: 25px;">
+                    <ul style="list-style: none; padding-left: 0; color: #444;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="background: var(--accent-color); color: white; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85em; flex-shrink: 0; font-weight: bold;">1</span>
+                            <div>
+                                <strong>アプリの常駐</strong><br>
+                                起動するとタスクトレイ（通知領域）にClipFlyoutアイコンが表示され、自動的にクリップボードの監視が始まります。
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="background: var(--accent-color); color: white; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85em; flex-shrink: 0; font-weight: bold;">2</span>
+                            <div>
+                                <strong>コピーするだけ (<kbd>Ctrl</kbd> + <kbd>C</kbd>)</strong><br>
+                                ブラウザやテキストエディタ等でコピーを行うと、画面端に非アクティブ（フォーカスを奪わない）すりガラスフライアウトが表示されます。
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="background: var(--accent-color); color: white; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85em; flex-shrink: 0; font-weight: bold;">3</span>
+                            <div>
+                                <strong>リコールショートカット (<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>)</strong><br>
+                                フライアウトが消えた後でも、いつでも直前のフライアウトを再表示できます。
+                            </div>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="background: var(--accent-color); color: white; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85em; flex-shrink: 0; font-weight: bold;">4</span>
+                            <div>
+                                <strong>タスクバーウィジェットの活用</strong><br>
+                                タスクバー上に表示されている小さなウィジェットをクリックすると直前のコピー内容が展開されます。右クリックで位置変更メニューが開きます。
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- System Requirements & License -->
+            <section class="fade-in-up" style="margin-bottom: 40px;">
+                <h2>動作環境 & ライセンス</h2>
+                <div class="card" style="padding: 25px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div>
+                            <h3 style="margin-top: 0; color: var(--accent-color);"><i class="fa-solid fa-desktop"></i> システム要件</h3>
+                            <ul style="padding-left: 20px; color: #555;">
+                                <li><strong>対応OS</strong>: Windows 11 / Windows 10 (x64)</li>
+                                <li><strong>ランタイム</strong>: .NET 9.0 Desktop Runtime</li>
+                                <li><strong>透明効果</strong>: Windowsの「透明効果」が有効であること（アクリル効果に推奨）</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0; color: var(--accent-color);"><i class="fa-solid fa-scale-balanced"></i> ライセンス</h3>
+                            <p style="color: #555; font-size: 0.95em;">
+                                <strong>GNU General Public License v3 (GPL-3.0)</strong><br>
+                                本ソフトウェアはオープンソースの自由ソフトウェアです。どなたでも無償で自由に使用、研究、改変、再配布できます。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Back navigation -->
+            <div style="text-align: center; margin: 40px 0 20px;">
+                <a href="featlis-apps" class="btn btn-portfolio" style="background-color: #8e44ad;">
+                    <i class="fa-solid fa-arrow-left"></i> アプリ一覧に戻る
+                </a>
+                <a href="/" class="btn btn-back" style="margin-left: 10px;">
+                    <i class="fa-solid fa-house"></i> ポートフォリオへ
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Featlis. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- サイドナビゲーション -->
+    <nav class="side-nav">
+        <a href="featlis-apps" class="side-nav-item"><i class="fa-solid fa-layer-group"></i> アプリ一覧</a>
+        <a href="clipflyout" class="side-nav-item active"><i class="fa-solid fa-paperclip"></i> ClipFlyout</a>
+        <a href="featlis-discordbot" class="side-nav-item"><i class="fa-brands fa-discord"></i> Discord Bot</a>
+        <a href="/" class="side-nav-item portfolio"><i class="fa-solid fa-arrow-left"></i> ポートフォリオへ戻る</a>
+    </nav>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

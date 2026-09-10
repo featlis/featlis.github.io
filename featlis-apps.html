@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featlis Applications - デスクトップアプリ一覧</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+</head>
+
+<body>
+    <!-- 幾何学的な動的パーティクルを描画するキャンバス -->
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+        <header class="fade-in">
+            <h1 class="typing-effect">Featlis Applications</h1>
+            <p class="subtitle">自作のWindowsデスクトップアプリケーションをご紹介します！</p>
+            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="/" class="btn btn-portfolio">
+                    <i class="fa-solid fa-house"></i> ポートフォリオに戻る
+                </a>
+                <a href="featlis-discordbot" class="btn btn-detail" style="background-color: #5865F2;">
+                    <i class="fa-brands fa-discord"></i> Discord Bot 配布ページ
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <section class="fade-in-up" style="margin-bottom: 30px; text-align: center;">
+                <h2 style="margin-bottom: 15px; border-bottom: none; display: inline-block;">Sponsor</h2>
+                <p style="margin-bottom: 20px; font-size: 0.95em;">アプリの開発や活動を応援していただける方は、ご支援をよろしくお願いいたします！</p>
+                <iframe src="https://github.com/sponsors/featlis/card" title="Sponsor featlis" height="80" width="600"
+                    style="border: 0; max-width: 100%; border-radius: 6px;"></iframe>
+            </section>
+
+            <div class="bot-grid">
+                <!-- App 1: ClipFlyout -->
+                <div class="card fade-in-up">
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <img src="assets/clipflyout/app-icon.png" alt="ClipFlyout Icon" style="width: 72px; height: 72px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    </div>
+                    <h2>ClipFlyout</h2>
+                    <p>Windows 11 Fluent Design（本物のアクリル効果）に最適化された、クリップボード連携・即時アクションユーティリティ。タスクバー直結ウィジェット、13種以上のデータ型自動判定、完全ローカル処理。</p>
+                    <div class="badges" style="text-align: center;">
+                        <span class="badge-link"><img src="https://img.shields.io/badge/Windows-11%20%7C%2010-0078D4?style=flat-square&logo=windows&logoColor=white" alt="Windows"></span>
+                        <span class="badge-link"><img src="https://img.shields.io/badge/.NET-9.0%20WPF-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 9.0"></span>
+                        <span class="badge-link"><img src="https://img.shields.io/badge/License-GPLv3-green.svg?style=flat-square" alt="GPLv3"></span>
+                    </div>
+                    <div class="card-actions" style="margin-top: 15px;">
+                        <a href="clipflyout" class="btn btn-detail">
+                            <i class="fa-solid fa-circle-info"></i> 詳細・配布ページ
+                        </a>
+                        <a href="https://github.com/featlis/ClipFlyout" target="_blank" class="btn btn-github">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coming Soon -->
+                <div class="card fade-in-up" style="border: 2px dashed var(--border-color); background-color: transparent; box-shadow: none; opacity: 0.8;">
+                    <div class="card-icon" style="color: #888;"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h2 style="color: #888;">Coming Soon...</h2>
+                    <p style="color: #888;">新しいデスクトップアプリケーションや便利ツールを現在開発中です。<br>次回の追加をお楽しみに！</p>
+                    <div class="card-actions">
+                        <span class="btn" style="background-color: transparent; color: #888; border: 1px solid #888; cursor: default; width: 100%;">
+                            <i class="fa-solid fa-spinner fa-pulse"></i> 開発中
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Featlis. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- サイドナビゲーション -->
+    <nav class="side-nav">
+        <a href="featlis-apps" class="side-nav-item active"><i class="fa-solid fa-layer-group"></i> アプリ一覧</a>
+        <a href="clipflyout" class="side-nav-item"><i class="fa-solid fa-paperclip"></i> ClipFlyout</a>
+        <a href="featlis-discordbot" class="side-nav-item"><i class="fa-brands fa-discord"></i> Discord Bot</a>
+        <a href="/" class="side-nav-item portfolio"><i class="fa-solid fa-arrow-left"></i> ポートフォリオへ戻る</a>
+    </nav>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

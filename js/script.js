@@ -143,7 +143,13 @@ async function loadPage(url, pushState = true) {
     if (currentContainer) currentContainer.style.opacity = '0';
 
     try {
-        const response = await fetch(url);
+        let response = await fetch(url);
+        if (!response.ok && !url.endsWith('.html')) {
+            const retry = await fetch(url + '.html');
+            if (retry.ok) {
+                response = retry;
+            }
+        }
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
