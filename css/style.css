@@ -801,12 +801,142 @@ kbd {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* 動きを減らす設定の人には静かに */
+/* 動きを減らす設定の人には静かに
+   （Modern Web Guidance の motion ガイドに従い、一律 0.01ms 化はせず対象ごとに止める） */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+    #intro { display: none; }
+    .marquee-track, .hero-wave path, .float-anim, .demo-live::before { animation: none; }
+    .card, .skill-category, .feature-item { animation: none; }
+    .fade-in, .subtitle, .fade-in-up { animation-duration: 0.2s; transition-duration: 0.2s; }
 }
+
+/* --- 大胆版：ヒーロー / デモ / マーキー / 色バンド --- */
+.hero {
+    text-align: center;
+}
+
+.hero .chip { margin-bottom: 20px; }
+.hero h1 { font-size: clamp(2.3rem, 5.5vw, 3.4rem); margin: 0; }
+.hero .subtitle { margin-top: 12px; }
+.hero .hero-wave { margin: 16px auto 0; width: min(440px, 100%); }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; justify-content: center; }
+
+@media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero-cta { justify-content: center; }
+    .hero .hero-wave { margin-left: auto; margin-right: auto; }
+}
+
+
+.marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    margin-bottom: 8px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    gap: 48px;
+    width: max-content;
+    animation: marqueeSlide 28s linear infinite;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    color: var(--text-soft);
+}
+
+.marquee-track span { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
+.marquee-track i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.marquee-track .d1 { background: var(--pink-deep); }
+.marquee-track .d2 { background: var(--mint-deep); }
+.marquee-track .d3 { background: var(--lavender-deep); }
+.marquee-track .d4 { background: var(--blue-deep); }
+.marquee-track .d5 { background: var(--yellow-deep); }
+.marquee-track .d6 { background: var(--peach-deep); }
+
+@keyframes marqueeSlide {
+    to { transform: translateX(-50%); }
+}
+
+.band {
+    background-color: color-mix(in srgb, var(--card) 16%, white);
+    padding: 36px;
+    margin-bottom: 32px;
+}
+
+.band .band-no {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: color-mix(in srgb, var(--card-deep) 32%, white);
+    pointer-events: none;
+}
+
+.tile { padding: 36px 32px; }
+
+/* --- 入場時の演出 --- */
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 44px 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+    cursor: pointer;
+}
+
+#intro.done { transform: translateY(-100%); }
+
+.intro-inner { text-align: center; animation: fadeIn 0.4s ease both; padding: 24px; }
+.intro-title { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; margin-top: 16px; }
+
+.intro-bar { display: flex; gap: 8px; justify-content: center; margin-top: 24px; }
+.intro-bar span {
+    width: 28px;
+    height: 8px;
+    border-radius: 999px;
+    transform-origin: left;
+    animation: barFill 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.intro-bar span:nth-child(1) { background: var(--pink); animation-delay: 0.05s; }
+.intro-bar span:nth-child(2) { background: var(--mint); animation-delay: 0.15s; }
+.intro-bar span:nth-child(3) { background: var(--lavender); animation-delay: 0.25s; }
+.intro-bar span:nth-child(4) { background: var(--blue); animation-delay: 0.35s; }
+.intro-bar span:nth-child(5) { background: var(--yellow); animation-delay: 0.45s; }
+.intro-bar span:nth-child(6) { background: var(--peach); animation-delay: 0.55s; }
+
+@keyframes barFill {
+    from { transform: scaleX(0); opacity: 0.3; }
+    to   { transform: scaleX(1); opacity: 1; }
+}
+
+.intro-note {
+    margin-top: 16px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--text-soft);
+}
+
+/* ページごとの基調色（body に付ける） */
+.p-pink    { --accent-color: var(--pink-deep);    --card: var(--pink);    --card-deep: var(--pink-deep); }
+.p-mint    { --accent-color: var(--mint-deep);    --card: var(--mint);    --card-deep: var(--mint-deep); }
+.p-lavender{ --accent-color: var(--lavender-deep);--card: var(--lavender);--card-deep: var(--lavender-deep); }
+.p-blue    { --accent-color: var(--blue-deep);    --card: var(--blue);    --card-deep: var(--blue-deep); }
+.p-yellow  { --accent-color: var(--yellow-deep);  --card: var(--yellow);  --card-deep: var(--yellow-deep); }
+.p-peach   { --accent-color: var(--peach-deep);   --card: var(--peach);   --card-deep: var(--peach-deep); }

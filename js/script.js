@@ -61,7 +61,7 @@ function initPage() {
                     setTimeout(() => { title.style.borderRight = 'none'; }, 1000);
                 }
             };
-            setTimeout(typeWriter, 300);
+            setTimeout(typeWriter, introActive ? 1400 : 300);
         }
     }
 
@@ -152,6 +152,28 @@ function initParticles() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
+}
+
+// 入場時の演出（トップページのみ・セッションに1回・クリックでスキップ可）
+let introActive = false;
+function initIntro() {
+    const intro = document.getElementById('intro');
+    if (!intro) return false;
+    let seen = false;
+    try { seen = sessionStorage.getItem('introSeen') === '1'; } catch (e) { /* そのまま */ }
+    if (REDUCED || seen) { intro.remove(); return false; }
+
+    document.body.style.overflow = 'hidden';
+    const finish = () => {
+        if (!intro.isConnected) return;
+        intro.classList.add('done');
+        try { sessionStorage.setItem('introSeen', '1'); } catch (e) { /* そのまま */ }
+        document.body.style.overflow = '';
+        setTimeout(() => intro.remove(), 780);
+    };
+    intro.addEventListener('click', finish);
+    setTimeout(finish, 1250);
+    return true;
 }
 
 // PJAX: リンクのクリックイベント設定
@@ -253,6 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (c) c.style.transition = 'opacity 0.3s ease';
     if (s) s.style.transition = 'opacity 0.3s ease';
 
+    introActive = initIntro();
     initParticles();
     initPage();
 });
