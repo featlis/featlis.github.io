@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found | Featlis's Portfolio</title>
+    <script>(function(){try{var t=localStorage.getItem("theme");if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
+    <meta name="description" content="ページが見つかりませんでした。">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Featlis's Portfolio">
+    <meta property="og:title" content="404 Not Found | Featlis's Portfolio">
+    <meta property="og:image" content="https://featlis.github.io/assets/ogp.png">
+    <link rel="icon" type="image/png" href="/favicon.png?v=2">
+    <link rel="apple-touch-icon" href="/favicon.png?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="progressBar"></div>
+<header class="topbar">
+    <a class="logo" href="/">featlis<b>@</b>portfolio</a>
+    <nav>
+        <a href="/">トップ</a>
+        <a href="/featlis-apps">アプリ</a>
+        <a href="/featlis-discordbot">Bot</a>
+        <a href="/clipflyout">ClipFlyout</a>
+    </nav>
+    <button class="tbtn kbd" id="paletteBtn" type="button">Ctrl K で移動</button>
+    <button class="tbtn icon" id="themeToggle" type="button" aria-label="テーマ切替"></button>
+</header>
+    <div class="container">
+        <main class="bento">
+            <section class="tile w12" style="text-align:center; padding: 64px 26px;">
+                <span class="chip c-yellow">ERROR 404</span>
+                <h1 style="font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 900; margin: 18px 0 6px;">404</h1>
+                <p style="font-weight:700; color: var(--ink-soft);">ページが見つかりませんでした。<br>アドレスが変わったか、削除された可能性があります。</p>
+                <div class="hero-cta" style="justify-content:center;">
+                    <a href="/" class="btn btn-invite">トップへ戻る</a>
+                    <a href="/featlis-apps" class="btn btn-portfolio">アプリを見る</a>
+                    <a href="/featlis-discordbot" class="btn btn-detail">Botを見る</a>
+                </div>
+            </section>
+        </main>
+        <footer class="site-foot">
+            <p>© <span id="year">2026</span> featlis — Featlis's Portfolio</p>
+        </footer>
+    </div>
+    <div id="palette" role="dialog" aria-label="クイック移動">
+    <div class="palette-box">
+        <input id="paletteInput" type="text" placeholder="ページやリンクを検索..." autocomplete="off">
+        <div class="palette-list" id="paletteList"></div>
+    </div>
+</div>
+<button id="toTop" type="button" aria-label="トップへ戻る"><i class="fa-solid fa-arrow-up"></i></button>
+    <script src="/js/script.js"></script>
+</body>
+</html>

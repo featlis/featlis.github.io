@@ -5,26 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClipFlyout - Windows 11 クリップボード連携ユーティリティ | Featlis</title>
+    <script>(function(){try{var t=localStorage.getItem("theme");if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
     <meta name="description" content="Windows 11 Fluent Designに最適化された、クリップボード連携・即時アクションユーティリティ『ClipFlyout』の配布ページ。13種以上のデータ型を自動判定し、完全ローカル処理でプライバシーも保護します。">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Featlis's Portfolio">
     <meta property="og:title" content="ClipFlyout - Windows 11 クリップボード連携ユーティリティ | Featlis">
     <meta property="og:description" content="Windows 11 Fluent Designに最適化された、クリップボード連携・即時アクションユーティリティ『ClipFlyout』の配布ページ。13種以上のデータ型を自動判定し、完全ローカル処理でプライバシーも保護します。">
     <meta property="og:url" content="https://featlis.github.io/clipflyout">
-    <meta property="og:image" content="https://featlis.github.io/assets/clipflyout/app-icon.png">
+    <meta property="og:image" content="https://featlis.github.io/assets/ogp.png">
     <meta name="twitter:card" content="summary">
-    <link
-        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
 </head>
 
 <body class="p-blue">
+    <div id="progressBar"></div>
+<header class="topbar">
+    <a class="logo" href="./">featlis<b>@</b>portfolio</a>
+    <nav>
+        <a href="./">トップ</a>
+        <a href="featlis-apps">アプリ</a>
+        <a href="featlis-discordbot">Bot</a>
+        <a href="clipflyout">ClipFlyout</a>
+    </nav>
+    <button class="tbtn kbd" id="paletteBtn" type="button">Ctrl K で移動</button>
+    <button class="tbtn icon" id="themeToggle" type="button" aria-label="テーマ切替"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg></button>
+</header>
     <!-- 幾何学的な動的パーティクルを描画するキャンバス -->
-    <canvas id="particles"></canvas>
+    
 
     <div class="container">
         <header class="fade-in">
@@ -35,10 +47,10 @@
             <p class="subtitle">Windows 11 Fluent Design に最適化された、クリップボード連携・即時アクションユーティリティ</p>
             <div style="margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
                 <a href="featlis-apps" class="btn btn-portfolio">
-                    <i class="fa-solid fa-layer-group"></i> アプリ一覧に戻る
+                    <svg class="ic" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z"/></svg> アプリ一覧に戻る
                 </a>
                 <a href="/" class="btn btn-back">
-                    <i class="fa-solid fa-house"></i> ポートフォリオへ
+                    <svg class="ic" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg> ポートフォリオへ
                 </a>
             </div>
         </header>
@@ -61,28 +73,17 @@
 
                 <div class="download-cta-group">
                     <a href="https://github.com/featlis/ClipFlyout/releases/latest" target="_blank" class="btn btn-download-primary">
-                        <i class="fa-solid fa-download"></i> 最新インストーラー版 (.exe)
+                        <svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 242.7-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7 288 32zM64 352c-35.3 0-64 28.7-64 64l0 32c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-32c0-35.3-28.7-64-64-64l-101.5 0-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352 64 352zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg> 最新インストーラー版 (.exe)
                     </a>
                     <a href="https://github.com/featlis/ClipFlyout/releases/latest" target="_blank" class="btn btn-download-secondary">
-                        <i class="fa-solid fa-file-zipper"></i> ポータブル版 (.zip)
+                        <svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM96 48c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16zm-6.3 71.8c3.7-14 16.4-23.8 30.9-23.8l14.8 0c14.5 0 27.2 9.7 30.9 23.8l23.5 88.2c1.4 5.4 2.1 10.9 2.1 16.4c0 35.2-28.8 63.7-64 63.7s-64-28.5-64-63.7c0-5.5 .7-11.1 2.1-16.4l23.5-88.2zM112 336c-8.8 0-16 7.2-16 16s7.2 16 16 16l32 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0z"/></svg> ポータブル版 (.zip)
                     </a>
                     <a href="https://github.com/featlis/ClipFlyout" target="_blank" class="btn btn-github">
-                        <i class="fa-brands fa-github"></i> GitHub リポジトリ
+                        <svg class="ic" viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> GitHub リポジトリ
                     </a>
                 </div>
                 <p style="font-size: 0.85rem; color: #888; margin-top: 10px; margin-bottom: 0;">
                     ※ Windows 11 / 10 (x64) 対応。管理者権限不要でインストール可能です。
-                </p>
-            </section>
-
-            <!-- Preview Screenshot -->
-            <section class="fade-in-up" style="margin-bottom: 40px; text-align: center;">
-                <h2 style="margin-bottom: 20px;">デスクトップ プレビュー</h2>
-                <div class="app-preview-wrapper">
-                    <img src="assets/clipflyout/preview.jpg" alt="ClipFlyout Preview" class="app-preview-img">
-                </div>
-                <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
-                    Windows 11 DWM トランジェントアクリルによる本物のすりガラス背景と、タスクバー直結ウィジェット
                 </p>
             </section>
 
@@ -91,27 +92,27 @@
                 <h2>主な機能と特徴</h2>
                 <div class="feature-grid">
                     <div class="feature-item">
-                        <h3><i class="fa-solid fa-wand-magic-sparkles"></i> 本物のアクリル効果</h3>
+                        <h3><svg class="ic" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path d="M234.7 42.7L197 56.8c-3 1.1-5 4-5 7.2s2 6.1 5 7.2l37.7 14.1L248.8 123c1.1 3 4 5 7.2 5s6.1-2 7.2-5l14.1-37.7L315 71.2c3-1.1 5-4 5-7.2s-2-6.1-5-7.2L277.3 42.7 263.2 5c-1.1-3-4-5-7.2-5s-6.1 2-7.2 5L234.7 42.7zM46.1 395.4c-18.7 18.7-18.7 49.1 0 67.9l34.6 34.6c18.7 18.7 49.1 18.7 67.9 0L529.9 116.5c18.7-18.7 18.7-49.1 0-67.9L495.3 14.1c-18.7-18.7-49.1-18.7-67.9 0L46.1 395.4zM484.6 82.6l-105 105-23.3-23.3 105-105 23.3 23.3zM7.5 117.2C3 118.9 0 123.2 0 128s3 9.1 7.5 10.8L64 160l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L128 160l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L128 96 106.8 39.5C105.1 35 100.8 32 96 32s-9.1 3-10.8 7.5L64 96 7.5 117.2zm352 256c-4.5 1.7-7.5 6-7.5 10.8s3 9.1 7.5 10.8L416 416l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L480 416l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L480 352l-21.2-56.5c-1.7-4.5-6-7.5-10.8-7.5s-9.1 3-10.8 7.5L416 352l-56.5 21.2z"/></svg> 本物のアクリル効果</h3>
                         <p>Windows 11 DWM（デスクトップウィンドウマネージャー）のトランジェントアクリルを採用。なめらかなすりガラス背景とダーク/ライトテーマ自動追従に対応しています。</p>
                     </div>
                     <div class="feature-item">
-                        <h3><i class="fa-solid fa-table-columns"></i> タスクバー直結ウィジェット</h3>
+                        <h3><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M0 96C0 60.7 28.7 32 64 32l384 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm64 64l0 256 160 0 0-256L64 160zm384 0l-160 0 0 256 160 0 0-256z"/></svg> タスクバー直結ウィジェット</h3>
                         <p>直近のコピー内容をタスクバー近傍にシームレス表示。枠線のない自然なデザインで、クリックするだけでいつでもフライアウトを呼び出せます。位置調整スライダー付き。</p>
                     </div>
                     <div class="feature-item">
-                        <h3><i class="fa-solid fa-bolt"></i> 1クリック即時アクション</h3>
+                        <h3><svg class="ic" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/></svg> 1クリック即時アクション</h3>
                         <p>カラーコード、UNIX時間、JSON、URL等を自動判別。変換アクション実行後は、次のフライアウトに「ペースト」ボタンが自動提示され作業が滞りません。</p>
                     </div>
                     <div class="feature-item">
-                        <h3><i class="fa-solid fa-shield-halved"></i> 100% ローカル & プライバシー保護</h3>
+                        <h3><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8l0 378.1C394 378 431.1 230.1 432 141.4L256 66.8s0 0 0 0z"/></svg> 100% ローカル & プライバシー保護</h3>
                         <p>データは完全ローカル処理。1PasswordやBitwarden、KeePassなどのパスワード管理ツールからのコピーは自動検知して除外するため安全です。</p>
                     </div>
                     <div class="feature-item">
-                        <h3><i class="fa-solid fa-compass"></i> 初回セットアップウィザード</h3>
+                        <h3><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg> 初回セットアップウィザード</h3>
                         <p>初回起動時に親しみやすいウェルカム画面が表示され、「既定値で使用する」をクリックするだけで最適な初期設定ですぐに使い始められます。</p>
                     </div>
                     <div class="feature-item">
-                        <h3><i class="fa-solid fa-sliders"></i> 洗練された設定画面</h3>
+                        <h3><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"/></svg> 洗練された設定画面</h3>
                         <p>PowerToys スタイルのアイコンプレート付きカードUI。フライアウトの位置・透明度・アクセントカラーのカスタマイズやインライン更新確認に対応。</p>
                     </div>
                 </div>
@@ -245,7 +246,7 @@
                 <div class="card" style="padding: 25px;">
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                         <div>
-                            <h3 style="margin-top: 0; color: var(--accent-color);"><i class="fa-solid fa-desktop"></i> システム要件</h3>
+                            <h3 style="margin-top: 0; color: var(--accent-color);"><svg class="ic" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l176 0-10.7 32L160 448c-17.7 0-32 14.3-32 32s14.3 32 32 32l256 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-69.3 0L336 416l176 0c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0zM512 64l0 224L64 288 64 64l448 0z"/></svg> システム要件</h3>
                             <ul style="padding-left: 20px; color: #555;">
                                 <li><strong>対応OS</strong>: Windows 11 / Windows 10 (x64)</li>
                                 <li><strong>ランタイム</strong>: .NET 9.0 Desktop Runtime</li>
@@ -253,7 +254,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 style="margin-top: 0; color: var(--accent-color);"><i class="fa-solid fa-scale-balanced"></i> ライセンス</h3>
+                            <h3 style="margin-top: 0; color: var(--accent-color);"><svg class="ic" viewBox="0 0 640 512" aria-hidden="true" focusable="false"><path d="M384 32l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L398.4 96c-5.2 25.8-22.9 47.1-46.4 57.3L352 448l160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-192 0-192 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l160 0 0-294.7c-23.5-10.3-41.2-31.6-46.4-57.3L128 96c-17.7 0-32-14.3-32-32s14.3-32 32-32l128 0c14.6-19.4 37.8-32 64-32s49.4 12.6 64 32zm55.6 288l144.9 0L512 195.8 439.6 320zM512 416c-62.9 0-115.2-34-126-78.9c-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1C627.2 382 574.9 416 512 416zM126.8 195.8L54.4 320l144.9 0L126.8 195.8zM.9 337.1c-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1C242 382 189.7 416 126.8 416S11.7 382 .9 337.1z"/></svg> ライセンス</h3>
                             <p style="color: #555; font-size: 0.95em;">
                                 <strong>GNU General Public License v3 (GPL-3.0)</strong><br>
                                 本ソフトウェアはオープンソースの自由ソフトウェアです。どなたでも無償で自由に使用、研究、改変、再配布できます。
@@ -266,10 +267,10 @@
             <!-- Back navigation -->
             <div style="text-align: center; margin: 40px 0 20px;">
                 <a href="featlis-apps" class="btn btn-portfolio">
-                    <i class="fa-solid fa-arrow-left"></i> アプリ一覧に戻る
+                    <svg class="ic" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg> アプリ一覧に戻る
                 </a>
                 <a href="/" class="btn btn-back" style="margin-left: 10px;">
-                    <i class="fa-solid fa-house"></i> ポートフォリオへ
+                    <svg class="ic" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg> ポートフォリオへ
                 </a>
             </div>
         </main>
@@ -281,13 +282,20 @@
 
     <!-- サイドナビゲーション -->
     <nav class="side-nav">
-        <a href="featlis-apps" class="side-nav-item"><i class="fa-solid fa-layer-group"></i> アプリ一覧</a>
-        <a href="clipflyout" class="side-nav-item active"><i class="fa-solid fa-paperclip"></i> ClipFlyout</a>
-        <a href="https://featlis.github.io/Project-Tsubomi/" class="side-nav-item"><i class="fa-solid fa-seedling"></i> Project Tsubomi</a>
-        <a href="featlis-discordbot" class="side-nav-item"><i class="fa-brands fa-discord"></i> Discord Bot</a>
-        <a href="/" class="side-nav-item portfolio"><i class="fa-solid fa-arrow-left"></i> ポートフォリオへ戻る</a>
+        <a href="featlis-apps" class="side-nav-item"><svg class="ic" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z"/></svg> アプリ一覧</a>
+        <a href="clipflyout" class="side-nav-item active"><svg class="ic" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M364.2 83.8c-24.4-24.4-64-24.4-88.4 0l-184 184c-42.1 42.1-42.1 110.3 0 152.4s110.3 42.1 152.4 0l152-152c10.9-10.9 28.7-10.9 39.6 0s10.9 28.7 0 39.6l-152 152c-64 64-167.6 64-231.6 0s-64-167.6 0-231.6l184-184c46.3-46.3 121.3-46.3 167.6 0s46.3 121.3 0 167.6l-176 176c-28.6 28.6-75 28.6-103.6 0s-28.6-75 0-103.6l144-144c10.9-10.9 28.7-10.9 39.6 0s10.9 28.7 0 39.6l-144 144c-6.7 6.7-6.7 17.7 0 24.4s17.7 6.7 24.4 0l176-176c24.4-24.4 24.4-64 0-88.4z"/></svg> ClipFlyout</a>
+        <a href="https://featlis.github.io/Project-Tsubomi/" class="side-nav-item"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M512 32c0 113.6-84.6 207.5-194.2 222c-7.1-53.4-30.6-101.6-65.3-139.3C290.8 46.3 364 0 448 0l32 0c17.7 0 32 14.3 32 32zM0 96C0 78.3 14.3 64 32 64l32 0c123.7 0 224 100.3 224 224l0 32 0 160c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-160C100.3 320 0 219.7 0 96z"/></svg> Project Tsubomi</a>
+        <a href="featlis-discordbot" class="side-nav-item"><svg class="ic" viewBox="0 0 640 512" aria-hidden="true" focusable="false"><path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg> Discord Bot</a>
+        <a href="/" class="side-nav-item portfolio"><svg class="ic" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg> ポートフォリオへ戻る</a>
     </nav>
 
+    <div id="palette" role="dialog" aria-label="クイック移動">
+    <div class="palette-box">
+        <input id="paletteInput" type="text" placeholder="ページやリンクを検索..." autocomplete="off">
+        <div class="palette-list" id="paletteList"></div>
+    </div>
+</div>
+<button id="toTop" type="button" aria-label="トップへ戻る"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg></button>
     <script src="js/script.js"></script>
 </body>
 

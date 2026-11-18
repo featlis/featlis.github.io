@@ -5,25 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrintTweet - Featlis Discord Bots</title>
+    <script>(function(){try{var t=localStorage.getItem("theme");if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
     <meta name="description" content="Twitter（X）のURLからツイートのスクリーンショット画像を生成し、Discordに綺麗に埋め込んで表示するBot『PrintTweet』の紹介・導入ページです。">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Featlis's Portfolio">
     <meta property="og:title" content="PrintTweet - Featlis Discord Bots">
     <meta property="og:description" content="Twitter（X）のURLからツイートのスクリーンショット画像を生成し、Discordに綺麗に埋め込んで表示するBot『PrintTweet』の紹介・導入ページです。">
     <meta property="og:url" content="https://featlis.github.io/print-tweet">
-    <meta property="og:image" content="https://featlis.github.io/favicon.png">
+    <meta property="og:image" content="https://featlis.github.io/assets/ogp.png">
     <meta name="twitter:card" content="summary">
-    <link
-        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
 </head>
 
 <body class="p-lavender">
-    <canvas id="particles"></canvas>
+    <div id="progressBar"></div>
+<header class="topbar">
+    <a class="logo" href="./">featlis<b>@</b>portfolio</a>
+    <nav>
+        <a href="./">トップ</a>
+        <a href="featlis-apps">アプリ</a>
+        <a href="featlis-discordbot">Bot</a>
+        <a href="clipflyout">ClipFlyout</a>
+    </nav>
+    <button class="tbtn kbd" id="paletteBtn" type="button">Ctrl K で移動</button>
+    <button class="tbtn icon" id="themeToggle" type="button" aria-label="テーマ切替"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg></button>
+</header>
+    
 
     <div class="container">
         <header class="fade-in">
@@ -33,7 +45,7 @@
 
         <main>
             <div class="card bot-detail fade-in-up">
-                <div class="card-icon"><i class="fa-solid fa-print"></i></div>
+                <div class="card-icon"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M128 0C92.7 0 64 28.7 64 64l0 96 64 0 0-96 226.7 0L384 93.3l0 66.7 64 0 0-66.7c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0L128 0zM384 352l0 32 0 64-256 0 0-64 0-16 0-16 256 0zm64 32l32 0c17.7 0 32-14.3 32-32l0-96c0-35.3-28.7-64-64-64L64 192c-35.3 0-64 28.7-64 64l0 96c0 17.7 14.3 32 32 32l32 0 0 64c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-64zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg></div>
                 <h2>機能紹介</h2>
                 <p>Twitter(X)のURLをスラッシュコマンドで渡すと、ツイートのスクリーンショット画像を返すDiscord Botです。</p>
                 <p>tweetcaptureを使用して余白のない綺麗な画像を生成し、RT・いいね数・タイムスタンプ等すべての情報を表示します。</p>
@@ -63,10 +75,10 @@
                 <div class="card-actions" style="margin-top: 30px;">
                     <a href="https://discord.com/oauth2/authorize?client_id=1517826170408665088" target="_blank"
                         class="btn btn-invite">
-                        <i class="fa-solid fa-robot"></i> 導入する
+                        <svg class="ic" viewBox="0 0 640 512" aria-hidden="true" focusable="false"><path d="M320 0c17.7 0 32 14.3 32 32l0 64 120 0c39.8 0 72 32.2 72 72l0 272c0 39.8-32.2 72-72 72l-304 0c-39.8 0-72-32.2-72-72l0-272c0-39.8 32.2-72 72-72l120 0 0-64c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16l32 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l32 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l32 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0zM264 256a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224l16 0 0 192-16 0c-26.5 0-48-21.5-48-48l0-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-16 0 0-192 16 0z"/></svg> 導入する
                     </a>
                     <a href="featlis-discordbot" class="btn btn-back">
-                        <i class="fa-solid fa-arrow-left"></i> 戻る
+                        <svg class="ic" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg> 戻る
                     </a>
                 </div>
             </div>
@@ -79,14 +91,21 @@
 
     <!-- サイドナビゲーション -->
     <nav class="side-nav">
-        <a href="featlis-discordbot" class="side-nav-item"><i class="fa-solid fa-house"></i> トップページ</a>
-        <a href="twitter-translate-bot" class="side-nav-item"><i class="fa-solid fa-language"></i> TranslateBOT</a>
-        <a href="find-trends" class="side-nav-item"><i class="fa-solid fa-chart-line"></i> FindTrends</a>
-        <a href="time-signal" class="side-nav-item"><i class="fa-solid fa-clock"></i> TimeSignal</a>
-        <a href="print-tweet" class="side-nav-item active"><i class="fa-solid fa-print"></i> PrintTweet</a>
-        <a href="/" class="side-nav-item portfolio"><i class="fa-solid fa-arrow-left"></i> ポートフォリオへ戻る</a>
+        <a href="featlis-discordbot" class="side-nav-item"><svg class="ic" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg> トップページ</a>
+        <a href="twitter-translate-bot" class="side-nav-item"><svg class="ic" viewBox="0 0 640 512" aria-hidden="true" focusable="false"><path d="M0 128C0 92.7 28.7 64 64 64l192 0 48 0 16 0 256 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64l-256 0-16 0-48 0L64 448c-35.3 0-64-28.7-64-64L0 128zm320 0l0 256 256 0 0-256-256 0zM178.3 175.9c-3.2-7.2-10.4-11.9-18.3-11.9s-15.1 4.7-18.3 11.9l-64 144c-4.5 10.1 .1 21.9 10.2 26.4s21.9-.1 26.4-10.2l8.9-20.1 73.6 0 8.9 20.1c4.5 10.1 16.3 14.6 26.4 10.2s14.6-16.3 10.2-26.4l-64-144zM160 233.2L179 276l-38 0 19-42.8zM448 164c11 0 20 9 20 20l0 4 44 0 16 0c11 0 20 9 20 20s-9 20-20 20l-2 0-1.6 4.5c-8.9 24.4-22.4 46.6-39.6 65.4c.9 .6 1.8 1.1 2.7 1.6l18.9 11.3c9.5 5.7 12.5 18 6.9 27.4s-18 12.5-27.4 6.9l-18.9-11.3c-4.5-2.7-8.8-5.5-13.1-8.5c-10.6 7.5-21.9 14-34 19.4l-3.6 1.6c-10.1 4.5-21.9-.1-26.4-10.2s.1-21.9 10.2-26.4l3.6-1.6c6.4-2.9 12.6-6.1 18.5-9.8l-12.2-12.2c-7.8-7.8-7.8-20.5 0-28.3s20.5-7.8 28.3 0l14.6 14.6 .5 .5c12.4-13.1 22.5-28.3 29.8-45L448 228l-72 0c-11 0-20-9-20-20s9-20 20-20l52 0 0-4c0-11 9-20 20-20z"/></svg> TranslateBOT</a>
+        <a href="find-trends" class="side-nav-item"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg> FindTrends</a>
+        <a href="time-signal" class="side-nav-item"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg> TimeSignal</a>
+        <a href="print-tweet" class="side-nav-item active"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M128 0C92.7 0 64 28.7 64 64l0 96 64 0 0-96 226.7 0L384 93.3l0 66.7 64 0 0-66.7c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0L128 0zM384 352l0 32 0 64-256 0 0-64 0-16 0-16 256 0zm64 32l32 0c17.7 0 32-14.3 32-32l0-96c0-35.3-28.7-64-64-64L64 192c-35.3 0-64 28.7-64 64l0 96c0 17.7 14.3 32 32 32l32 0 0 64c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-64zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg> PrintTweet</a>
+        <a href="/" class="side-nav-item portfolio"><svg class="ic" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg> ポートフォリオへ戻る</a>
     </nav>
 
+    <div id="palette" role="dialog" aria-label="クイック移動">
+    <div class="palette-box">
+        <input id="paletteInput" type="text" placeholder="ページやリンクを検索..." autocomplete="off">
+        <div class="palette-list" id="paletteList"></div>
+    </div>
+</div>
+<button id="toTop" type="button" aria-label="トップへ戻る"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg></button>
     <script src="js/script.js"></script>
 </body>
 
