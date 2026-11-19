@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 Not Found | Featlis's Portfolio</title>
-    <script>(function(){try{var t=localStorage.getItem("theme");if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <script>(function(){try{var d=document.documentElement,m=document.querySelector('meta[name="color-scheme"]'),t=localStorage.getItem("theme");if(t==="dark"||t==="light"){d.setAttribute("data-theme",t);if(m)m.content=t;}else if(window.matchMedia("(prefers-color-scheme: dark)").matches){d.setAttribute("data-theme","dark");}var a=localStorage.getItem("accent");if(a)d.setAttribute("data-accent",a);}catch(e){}})();</script>
     <meta name="description" content="ページが見つかりませんでした。">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Featlis's Portfolio">
     <meta property="og:title" content="404 Not Found | Featlis's Portfolio">
     <meta property="og:image" content="https://featlis.github.io/assets/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="/favicon.png?v=2">
     <link rel="apple-touch-icon" href="/favicon.png?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,24 +20,25 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <a class="skip-link" href="#main">メインコンテンツへスキップ</a>
     <div id="progressBar"></div>
-<header class="topbar">
-    <a class="logo" href="/">featlis<b>@</b>portfolio</a>
-    <nav>
-        <a href="/">トップ</a>
-        <a href="/featlis-apps">アプリ</a>
-        <a href="/featlis-discordbot">Bot</a>
-        <a href="/clipflyout">ClipFlyout</a>
-    </nav>
-    <button class="tbtn kbd" id="paletteBtn" type="button">Ctrl K で移動</button>
-    <button class="tbtn icon" id="themeToggle" type="button" aria-label="テーマ切替"></button>
-</header>
+    <header class="topbar">
+        <a class="logo" href="/">featlis<b>@</b>portfolio</a>
+        <nav aria-label="メインメニュー">
+            <a href="/">トップ</a>
+            <a href="/featlis-apps">アプリ</a>
+            <a href="/featlis-discordbot">Bot</a>
+            <a href="/clipflyout">ClipFlyout</a>
+        </nav>
+        <button class="tbtn kbd" id="paletteBtn" type="button" aria-haspopup="dialog" aria-controls="palette"><span class="kbd-desktop">Ctrl K で移動</span><span class="kbd-mobile">移動</span></button>
+        <button class="tbtn icon" id="themeToggle" type="button" aria-label="テーマ切替"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg></button>
+    </header>
     <div class="container">
-        <main class="bento">
+        <main id="main" class="bento">
             <section class="tile w12" style="text-align:center; padding: 64px 26px;">
                 <span class="chip c-yellow">ERROR 404</span>
                 <h1 style="font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 900; margin: 18px 0 6px;">404</h1>
-                <p style="font-weight:700; color: var(--ink-soft);">ページが見つかりませんでした。<br>アドレスが変わったか、削除された可能性があります。</p>
+                <p class="text-soft" style="font-weight:700;">ページが見つかりませんでした。<br>アドレスが変わったか、削除された可能性があります。</p>
                 <div class="hero-cta" style="justify-content:center;">
                     <a href="/" class="btn btn-invite">トップへ戻る</a>
                     <a href="/featlis-apps" class="btn btn-portfolio">アプリを見る</a>
@@ -47,13 +50,18 @@
             <p>© <span id="year">2026</span> featlis — Featlis's Portfolio</p>
         </footer>
     </div>
-    <div id="palette" role="dialog" aria-label="クイック移動">
-    <div class="palette-box">
-        <input id="paletteInput" type="text" placeholder="ページやリンクを検索..." autocomplete="off">
-        <div class="palette-list" id="paletteList"></div>
-    </div>
-</div>
-<button id="toTop" type="button" aria-label="トップへ戻る"><i class="fa-solid fa-arrow-up"></i></button>
+    <dialog id="palette" closedby="any" aria-label="クイック移動">
+        <div class="palette-box">
+            <div class="palette-head">
+                <input id="paletteInput" type="text" placeholder="ページやコマンドを検索..." autocomplete="off" aria-label="ページやコマンドを検索">
+                <button type="button" class="palette-close" id="paletteClose" aria-label="閉じる">Esc</button>
+            </div>
+            <div class="palette-list" id="paletteList" role="listbox" aria-label="検索結果"></div>
+        </div>
+    </dialog>
+    <div id="toastRegion" role="region" aria-label="通知"></div>
+    <div id="toastLive" class="sr-only" aria-live="polite"></div>
+    <button id="toTop" type="button" aria-label="トップへ戻る"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg></button>
     <script src="/js/script.js"></script>
 </body>
 </html>

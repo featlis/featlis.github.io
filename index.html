@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Featlis's Portfolio</title>
-    <script>(function(){try{var t=localStorage.getItem("theme");if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <script>(function(){try{var d=document.documentElement,m=document.querySelector('meta[name="color-scheme"]'),t=localStorage.getItem("theme");if(t==="dark"||t==="light"){d.setAttribute("data-theme",t);if(m)m.content=t;}else if(window.matchMedia("(prefers-color-scheme: dark)").matches){d.setAttribute("data-theme","dark");}var a=localStorage.getItem("accent");if(a)d.setAttribute("data-accent",a);if(sessionStorage.getItem("introSeen")==="1"||window.matchMedia("(prefers-reduced-motion: reduce)").matches){d.setAttribute("data-intro","skip");}}catch(e){}})();</script>
+    <noscript><style>#intro{display:none}</style></noscript>
     <meta name="description" content="Featlisのポートフォリオ。Windowsアプリ『ClipFlyout』やDiscord Bot、開発中のボトムアップ型AI『Project Tsubomi』などを紹介しています。">
+    <link rel="canonical" href="https://featlis.github.io/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Featlis's Portfolio">
     <meta property="og:title" content="Featlis's Portfolio">
     <meta property="og:description" content="Featlisのポートフォリオ。Windowsアプリ『ClipFlyout』やDiscord Bot、開発中のボトムアップ型AI『Project Tsubomi』などを紹介しています。">
     <meta property="og:url" content="https://featlis.github.io/">
     <meta property="og:image" content="https://featlis.github.io/assets/ogp.png">
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="./favicon.png?v=2">
     <link rel="apple-touch-icon" href="./favicon.png?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,28 +24,29 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a class="skip-link" href="#main">メインコンテンツへスキップ</a>
     <div id="intro" aria-hidden="true">
-    <div class="intro-inner">
-        <span class="chip c-pink">FEATLIS.GITHUB.IO</span>
-        <div class="intro-title">Featlis's Portfolio</div>
-        <div class="intro-bar"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-        <div class="intro-note">LOADING</div>
+        <div class="intro-inner">
+            <span class="chip c-pink">FEATLIS.GITHUB.IO</span>
+            <div class="intro-title">Featlis's Portfolio</div>
+            <div class="intro-bar"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="intro-note">LOADING</div>
+        </div>
     </div>
-</div>
     <div id="progressBar"></div>
-<header class="topbar">
-    <a class="logo" href="./">featlis<b>@</b>portfolio</a>
-    <nav>
-        <a href="./">トップ</a>
-        <a href="featlis-apps">アプリ</a>
-        <a href="featlis-discordbot">Bot</a>
-        <a href="clipflyout">ClipFlyout</a>
-    </nav>
-    <button class="tbtn kbd" id="paletteBtn" type="button">Ctrl K で移動</button>
-    <button class="tbtn icon" id="themeToggle" type="button" aria-label="テーマ切替"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg></button>
-</header>
+    <header class="topbar">
+        <a class="logo" href="./">featlis<b>@</b>portfolio</a>
+        <nav aria-label="メインメニュー">
+            <a href="./">トップ</a>
+            <a href="featlis-apps">アプリ</a>
+            <a href="featlis-discordbot">Bot</a>
+            <a href="clipflyout">ClipFlyout</a>
+        </nav>
+        <button class="tbtn kbd" id="paletteBtn" type="button" aria-haspopup="dialog" aria-controls="palette"><span class="kbd-desktop">Ctrl K で移動</span><span class="kbd-mobile">移動</span></button>
+        <button class="tbtn icon" id="themeToggle" type="button" aria-label="テーマ切替"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg></button>
+    </header>
     <div class="container">
-        <main class="bento">
+        <main id="main" class="bento">
             <section class="tile hero-tile w8">
                 <span class="chip c-pink">PORTFOLIO</span>
                 <h1 id="typedTitle" data-text="Featlis's Portfolio">Featlis's Portfolio</h1>
@@ -55,34 +59,53 @@
                 <div class="hero-cta">
                     <a href="featlis-apps" class="btn btn-invite">アプリを見る</a>
                     <a href="featlis-discordbot" class="btn btn-portfolio">Botを見る</a>
-                    <a href="https://github.com/featlis" target="_blank" class="btn btn-github"><svg class="ic" viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> GitHub</a>
+                    <a href="https://github.com/featlis" target="_blank" rel="noopener noreferrer" class="btn btn-github"><svg class="ic" viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> GitHub</a>
                 </div>
             </section>
 
             <section class="tile status-tile w4">
                 <span class="t-label">STATUS</span>
-                <span class="live"><i></i>稼働中</span>
+                <h2 class="sr-only">ステータス</h2>
+                <div class="status-head">
+                    <span class="live"><i></i>稼働中</span>
+                    <span class="status-greet" id="jstGreeting">JST LIVE</span>
+                </div>
                 <div class="clock" id="clock">--:--:-- JST</div>
-                <p style="font-size:.82rem; color: var(--ink-soft);">日本時間で表示しています</p>
+                <p class="text-soft" style="font-size:.82rem;">日本時間で表示しています</p>
                 <div class="nums">
-                    <div class="num"><b data-count="6">0</b><span>作品</span></div>
-                    <div class="num"><b data-count="4">0</b><span>Bot</span></div>
-                    <div class="num"><b data-count="8">0</b><span>ページ</span></div>
+                    <div class="num"><b data-count="6">6</b><span>作品</span></div>
+                    <div class="num"><b data-count="4">4</b><span>Bot</span></div>
+                    <div class="num"><b data-count="8">8</b><span>ページ</span></div>
+                </div>
+                <div class="status-meta">
+                    <span>VISIT <strong id="metaVisits">1</strong></span>
+                    <span>THEME <strong id="metaTheme">LIGHT</strong></span>
+                    <span>VIEW <strong id="metaViewport">--</strong></span>
+                </div>
+                <div class="accent-picker" role="group" aria-label="アクセントカラー選択">
+                    <span class="accent-picker-label">ACCENT</span>
+                    <button type="button" class="accent-swatch sw-pink" data-accent-pick="pink" aria-label="ピンク" aria-pressed="false"></button>
+                    <button type="button" class="accent-swatch sw-mint" data-accent-pick="mint" aria-label="ミント" aria-pressed="false"></button>
+                    <button type="button" class="accent-swatch sw-lavender" data-accent-pick="lavender" aria-label="ラベンダー" aria-pressed="false"></button>
+                    <button type="button" class="accent-swatch sw-blue" data-accent-pick="blue" aria-label="ブルー" aria-pressed="false"></button>
+                    <button type="button" class="accent-swatch sw-yellow" data-accent-pick="yellow" aria-label="イエロー" aria-pressed="false"></button>
+                    <button type="button" class="accent-swatch sw-peach" data-accent-pick="peach" aria-label="ピーチ" aria-pressed="false"></button>
+                    <button type="button" class="accent-reset on" data-accent-pick="auto" aria-pressed="true">AUTO</button>
                 </div>
             </section>
 
             <section class="tile w7 c-blue">
                 <span class="t-label">APP / WINDOWS</span>
                 <div class="work-head">
-                    <img src="assets/clipflyout/app-icon.png" alt="ClipFlyout Icon">
-                    <h3>ClipFlyout</h3>
+                    <img src="assets/clipflyout/app-icon.png" width="50" height="50" alt="ClipFlyout Icon" decoding="async">
+                    <h2>ClipFlyout</h2>
                 </div>
                 <p>Windows 11 Fluent Design（本物のアクリル効果）に最適化された、クリップボード連携・即時アクションユーティリティ。作業中のウィンドウからフォーカスを奪わず、1クリックでカラー変換・JSON整形・タイムスタンプ変換などを実行可能です。</p>
                 <div class="badges">
-                    <span class="badge-link"><img src="https://img.shields.io/badge/.NET-9.0%20WPF-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 9.0"></span>
-                    <span class="badge-link"><img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white" alt="C#"></span>
-                    <span class="badge-link"><img src="https://img.shields.io/badge/Windows_11-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows 11"></span>
-                    <span class="badge-link"><img src="https://img.shields.io/badge/License-GPLv3-green.svg?style=for-the-badge" alt="GPLv3"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/.NET-9.0%20WPF-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 9.0" loading="lazy" decoding="async"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white" alt="C#" loading="lazy" decoding="async"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/Windows_11-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows 11" loading="lazy" decoding="async"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/License-GPLv3-green.svg?style=for-the-badge" alt="GPLv3" loading="lazy" decoding="async"></span>
                 </div>
                 <ul>
                     <li><strong>本物のアクリル効果 &amp; タスクバーウィジェット</strong>：タスクバー近傍に最新コピー内容を表示し、ワンクリックで展開。</li>
@@ -91,21 +114,21 @@
                 </ul>
                 <div class="work-btns">
                     <a href="clipflyout" class="btn btn-detail"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg> 詳細・ダウンロード</a>
-                    <a href="https://github.com/featlis/ClipFlyout" target="_blank" class="btn btn-github"><svg class="ic" viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> GitHub</a>
+                    <a href="https://github.com/featlis/ClipFlyout" target="_blank" rel="noopener noreferrer" class="btn btn-github"><svg class="ic" viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> GitHub</a>
                 </div>
             </section>
 
             <section class="tile w5 c-mint">
                 <span class="t-label">AI PROJECT</span>
                 <div class="work-head">
-                    <img src="https://featlis.github.io/Project-Tsubomi/assets/app-icon.webp" alt="Project Tsubomi Icon">
-                    <h3>Project Tsubomi（つぼみ）</h3>
+                    <img src="https://featlis.github.io/Project-Tsubomi/assets/app-icon.webp" width="50" height="50" alt="Project Tsubomi Icon" decoding="async">
+                    <h2>Project Tsubomi（つぼみ）</h2>
                 </div>
                 <p>PCの操作と画面を観察し、その経験と記憶から少しずつ育っていく「ボトムアップ型AI」を目指す個人開発プロジェクト。見て、覚えて、確かめながら育てることを設計の軸にしています。</p>
                 <div class="badges">
-                    <span class="badge-link"><img src="https://img.shields.io/badge/.NET-9.0%20WPF-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 9.0"></span>
-                    <span class="badge-link"><img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white" alt="C#"></span>
-                    <span class="badge-link"><img src="https://img.shields.io/badge/Status-Phase%203%20%E9%80%B2%E8%A1%8C%E4%B8%AD-ff8fab?style=for-the-badge" alt="Phase 3 進行中"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/.NET-9.0%20WPF-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 9.0" loading="lazy" decoding="async"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white" alt="C#" loading="lazy" decoding="async"></span>
+                    <span class="badge-link"><img src="https://img.shields.io/badge/Status-Phase%203%20%E9%80%B2%E8%A1%8C%E4%B8%AD-ff8fab?style=for-the-badge" alt="Phase 3 進行中" loading="lazy" decoding="async"></span>
                 </div>
                 <ul>
                     <li><strong>全体観察の3層構造</strong>：画面フレーム、操作イベント、UI要素情報を時刻で結びつけて記録。</li>
@@ -113,21 +136,22 @@
                     <li><strong>知識化と自己モデル</strong>：記録からエピソード・意味知識・スキル候補を抽出。分からないことは推測せず本人に聞く設計です。</li>
                 </ul>
                 <div class="work-btns">
-                    <a href="https://featlis.github.io/Project-Tsubomi/" target="_blank" class="btn btn-detail" style="background: var(--mint);"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M512 32c0 113.6-84.6 207.5-194.2 222c-7.1-53.4-30.6-101.6-65.3-139.3C290.8 46.3 364 0 448 0l32 0c17.7 0 32 14.3 32 32zM0 96C0 78.3 14.3 64 32 64l32 0c123.7 0 224 100.3 224 224l0 32 0 160c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-160C100.3 320 0 219.7 0 96z"/></svg> 紹介ページ</a>
+                    <a href="https://featlis.github.io/Project-Tsubomi/" target="_blank" rel="noopener noreferrer" class="btn btn-mint"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M512 32c0 113.6-84.6 207.5-194.2 222c-7.1-53.4-30.6-101.6-65.3-139.3C290.8 46.3 364 0 448 0l32 0c17.7 0 32 14.3 32 32zM0 96C0 78.3 14.3 64 32 64l32 0c123.7 0 224 100.3 224 224l0 32 0 160c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-160C100.3 320 0 219.7 0 96z"/></svg> 紹介ページ</a>
                 </div>
-                <p style="font-size:.82rem; margin-top:10px; opacity:.75;">※ 本体リポジトリは非公開で開発中です</p>
+                <p class="note-small">※ 本体リポジトリは非公開で開発中です</p>
             </section>
 
             <section class="tile w7">
                 <span class="t-label">SKILLS &amp; INTERESTS</span>
-                <div class="filter-chips">
-                    <button type="button" data-filter="all" class="on">すべて</button>
-                    <button type="button" data-filter="dev">開発</button>
-                    <button type="button" data-filter="study">学習</button>
-                    <button type="button" data-filter="hobby">趣味</button>
+                <h2 class="sr-only">スキルと関心</h2>
+                <div class="filter-chips" role="group" aria-label="スキル絞り込み">
+                    <button type="button" data-filter="all" class="on" aria-pressed="true">すべて</button>
+                    <button type="button" data-filter="dev" aria-pressed="false">開発</button>
+                    <button type="button" data-filter="study" aria-pressed="false">学習</button>
+                    <button type="button" data-filter="hobby" aria-pressed="false">趣味</button>
                 </div>
                 <div class="skill-group" data-cat="dev">
-                    <h4>プログラミング / 開発</h4>
+                    <h3>プログラミング / 開発</h3>
                     <ul>
                         <li>C# / .NET (WPF デスクトップアプリ開発)</li>
                         <li>Python (データ分析、Discord Bot開発)</li>
@@ -135,11 +159,11 @@
                     </ul>
                 </div>
                 <div class="skill-group" data-cat="study">
-                    <h4>学習領域</h4>
+                    <h3>学習領域</h3>
                     <ul><li>情報理論、離散数学、複素解析</li></ul>
                 </div>
                 <div class="skill-group" data-cat="hobby">
-                    <h4>趣味・活動</h4>
+                    <h3>趣味・活動</h3>
                     <ul>
                         <li>デジタルイラスト制作 (CLIP STUDIO PAINT, Affinity Photo)</li>
                         <li>ゲーム、読書</li>
@@ -149,7 +173,7 @@
 
             <section class="tile w5 c-pink">
                 <span class="t-label">DISCORD BOT</span>
-                <h3>Bot 一覧</h3>
+                <h2>Bot 一覧</h2>
                 <div class="bot-rows">
                     <a href="print-tweet"><span class="dot c-lavender"></span>PrintTweet for Discord<span class="go">OPEN &gt;</span></a>
                     <a href="twitter-translate-bot"><span class="dot c-peach"></span>Twitter Translate BOT<span class="go">OPEN &gt;</span></a>
@@ -163,25 +187,73 @@
 
             <section class="tile w5 c-yellow">
                 <span class="t-label">ABOUT ME</span>
-                <img class="about-img" src="https://raw.githubusercontent.com/SAWARATSUKI/KawaiiLogos/main/IamSeries/png/IamProgrammer!.png" alt="I am Programmer" loading="lazy">
+                <h2 class="sr-only">自己紹介</h2>
+                <img class="about-img" src="https://raw.githubusercontent.com/SAWARATSUKI/KawaiiLogos/main/IamSeries/png/IamProgrammer!.png" width="210" height="120" alt="I am Programmer" loading="lazy" decoding="async">
                 <p>情報工学やデータサイエンスの勉強をしています。プログラミングはまだ勉強中で未熟ですが、少しずつソフトウェア開発にも挑戦しています。また、VRChatのワールド作成やUnityを使ったアバター改変など、VRの世界で遊ぶことも好きです。</p>
             </section>
 
-            <section class="tile w7">
+            <section class="tile w7" id="ghConsole">
                 <span class="t-label">GITHUB</span>
-                <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start;">
-                    <a href="https://github.com/featlis" target="_blank" class="contact-card">
-                        <img src="https://img.icons8.com/fluency/96/github.png" height="46" alt="GitHub">
-                        <span class="contact-info"><span class="service-name">GitHub</span><span class="account-id">featlis</span></span>
-                    </a>
-                    <img class="stats-card" src="https://github-stats-extended.vercel.app/api?username=featlis&show_icons=true&hide_border=true&bg_color=ffffff&title_color=ff6584&text_color=333333&icon_color=ff6584" data-light-src="https://github-stats-extended.vercel.app/api?username=featlis&show_icons=true&hide_border=true&bg_color=ffffff&title_color=ff6584&text_color=333333&icon_color=ff6584" data-dark-src="https://github-stats-extended.vercel.app/api?username=featlis&show_icons=true&hide_border=true&bg_color=211a33&title_color=ff8fab&text_color=f2ecff&icon_color=ff8fab" height="150" alt="GitHub Stats" loading="lazy">
-                    <img class="stats-card" src="https://github-stats-extended.vercel.app/api/top-langs/?username=featlis&layout=compact&hide_border=true&bg_color=ffffff&title_color=ff6584&text_color=333333&icon_color=ff6584" data-light-src="https://github-stats-extended.vercel.app/api/top-langs/?username=featlis&layout=compact&hide_border=true&bg_color=ffffff&title_color=ff6584&text_color=333333&icon_color=ff6584" data-dark-src="https://github-stats-extended.vercel.app/api/top-langs/?username=featlis&layout=compact&hide_border=true&bg_color=211a33&title_color=ff8fab&text_color=f2ecff&icon_color=ff8fab" height="150" alt="Top Languages" loading="lazy">
+                <h2 class="sr-only">GitHub ステータス</h2>
+                <div class="gh-head">
+                    <div class="gh-handle">
+                        <img src="https://img.icons8.com/fluency/96/github.png" width="42" height="42" alt="GitHub" loading="lazy" decoding="async">
+                        <div>
+                            <strong>featlis</strong>
+                            <span>@featlis / GitHub Console</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/featlis" target="_blank" rel="noopener noreferrer" class="btn btn-github btn-sm">プロフィール ↗</a>
                 </div>
+                <div class="gh-metrics">
+                    <div class="gh-metric"><b id="ghRepos">25</b><span>REPOS</span></div>
+                    <div class="gh-metric"><b id="ghStars">7</b><span>STARS</span></div>
+                    <div class="gh-metric"><b id="ghFollowers">21</b><span>FOLLOWERS</span></div>
+                </div>
+                <div class="gh-lang-wrap">
+                    <div class="gh-lang-head"><span>LANGUAGES</span><span>OWN REPOS</span></div>
+                    <div class="gh-lang-bar" id="ghLangBar">
+                        <span class="gh-lang-seg seg-0" style="width: 33%" title="Python 33%"></span>
+                        <span class="gh-lang-seg seg-1" style="width: 22%" title="HTML 22%"></span>
+                        <span class="gh-lang-seg seg-2" style="width: 11%" title="C# 11%"></span>
+                        <span class="gh-lang-seg seg-3" style="width: 11%" title="JavaScript 11%"></span>
+                        <span class="gh-lang-seg seg-4" style="width: 23%" title="Other 23%"></span>
+                    </div>
+                    <div class="gh-lang-legend" id="ghLangLegend">
+                        <span><i class="gh-lang-dot seg-0"></i>Python 33%</span>
+                        <span><i class="gh-lang-dot seg-1"></i>HTML 22%</span>
+                        <span><i class="gh-lang-dot seg-2"></i>C# 11%</span>
+                        <span><i class="gh-lang-dot seg-3"></i>JavaScript 11%</span>
+                        <span><i class="gh-lang-dot seg-4"></i>Other 23%</span>
+                    </div>
+                </div>
+                <div class="gh-repos" id="ghRepoList">
+                    <a class="gh-repo" href="https://github.com/featlis/AudiusforDiscord" target="_blank" rel="noopener noreferrer">
+                        <span class="gh-repo-name">AudiusforDiscord</span>
+                        <span class="gh-repo-date">2026-11-16 ↗</span>
+                    </a>
+                    <a class="gh-repo" href="https://github.com/featlis/featlis" target="_blank" rel="noopener noreferrer">
+                        <span class="gh-repo-name">featlis</span>
+                        <span class="gh-lang-pill">HTML</span>
+                        <span class="gh-repo-date">2026-11-11 ↗</span>
+                    </a>
+                    <a class="gh-repo" href="https://github.com/featlis/Project-Tsubomi" target="_blank" rel="noopener noreferrer">
+                        <span class="gh-repo-name">Project-Tsubomi</span>
+                        <span class="gh-lang-pill">HTML</span>
+                        <span class="gh-repo-date">2026-11-05 ↗</span>
+                    </a>
+                </div>
+                <!-- 案1(外部Stats SVG 2カラム)へ戻す場合の差し替えテンプレート:
+                <div class="gh-stats-grid">
+                    <img class="stats-card" src="https://github-stats-extended.vercel.app/api?username=featlis&amp;show_icons=true&amp;hide_border=true&amp;bg_color=ffffff&amp;title_color=c92a63&amp;text_color=2b2440&amp;icon_color=c92a63" data-light-src="https://github-stats-extended.vercel.app/api?username=featlis&amp;show_icons=true&amp;hide_border=true&amp;bg_color=ffffff&amp;title_color=c92a63&amp;text_color=2b2440&amp;icon_color=c92a63" data-dark-src="https://github-stats-extended.vercel.app/api?username=featlis&amp;show_icons=true&amp;hide_border=true&amp;bg_color=211a33&amp;title_color=ff8fab&amp;text_color=f2ecff&amp;icon_color=ff8fab" width="467" height="195" alt="GitHub Stats" loading="lazy" decoding="async">
+                    <img class="stats-card" src="https://github-stats-extended.vercel.app/api/top-langs/?username=featlis&amp;layout=compact&amp;hide_border=true&amp;bg_color=ffffff&amp;title_color=c92a63&amp;text_color=2b2440&amp;icon_color=c92a63" data-light-src="https://github-stats-extended.vercel.app/api/top-langs/?username=featlis&amp;layout=compact&amp;hide_border=true&amp;bg_color=ffffff&amp;title_color=c92a63&amp;text_color=2b2440&amp;icon_color=c92a63" data-dark-src="https://github-stats-extended.vercel.app/api/top-langs/?username=featlis&amp;layout=compact&amp;hide_border=true&amp;bg_color=211a33&amp;title_color=ff8fab&amp;text_color=f2ecff&amp;icon_color=ff8fab" width="300" height="165" alt="Top Languages" loading="lazy" decoding="async">
+                </div>
+                -->
             </section>
 
             <section class="tile w6 c-lavender">
                 <span class="t-label">DISTRIBUTION</span>
-                <h3>配布ページ</h3>
+                <h2>配布ページ</h2>
                 <p>自作Windowsアプリと Discord Bot の配布は、それぞれ専用ページからどうぞ。</p>
                 <div class="work-btns">
                     <a href="featlis-apps" class="btn btn-invite">アプリ配布ページ</a>
@@ -191,34 +263,40 @@
 
             <section class="tile w6">
                 <span class="t-label">CONTACT / SUPPORT</span>
-                <h3>連絡と応援</h3>
+                <h2>連絡と応援</h2>
                 <p>ご連絡はこちらまでお気軽にどうぞ。活動を応援していただける場合は、GitHub Sponsorsからのご支援もお待ちしております。</p>
-                <div class="work-btns">
-                    <a href="https://discord.com/users/533128660044218408" target="_blank" class="contact-card">
-                        <img src="https://img.icons8.com/fluency/96/discord-logo.png" height="38" alt="Discord">
+                <div class="contact-row">
+                    <a href="https://discord.com/users/533128660044218408" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <img src="https://img.icons8.com/fluency/96/discord-logo.png" width="38" height="38" alt="Discord" loading="lazy" decoding="async">
                         <span class="contact-info"><span class="service-name">Discord</span><span class="account-id">featlis</span></span>
                     </a>
+                    <button type="button" class="copy-btn" data-copy="featlis" data-copy-label="Discord ID (featlis)">IDコピー</button>
                 </div>
                 <iframe src="https://github.com/sponsors/featlis/card" title="Sponsor featlis" height="80" width="600" style="border:0; max-width:100%; border-radius:10px; margin-top:14px;" loading="lazy"></iframe>
             </section>
         </main>
         <footer class="site-foot">
-    <p>© <span id="year">2026</span> featlis — Featlis's Portfolio</p>
-    <p style="margin-top: 10px;">Credits & License:</p>
-    <ul>
-        <li>Logos by <a href="https://github.com/SAWARATSUKI/KawaiiLogos" target="_blank">SAWARATSUKI</a> (CC BY-NC 4.0)</li>
-        <li>Stats Cards by <a href="https://github.com/anuraghazra/github-readme-stats" target="_blank">anuraghazra</a> (MIT)</li>
-        <li>Typing SVG by <a href="https://github.com/DenverCoder1/readme-typing-svg" target="_blank">DenverCoder1</a> (MIT)</li>
-    </ul>
-</footer>
+            <p>© <span id="year">2026</span> featlis — Featlis's Portfolio</p>
+            <p style="margin-top: 10px;">Credits &amp; License:</p>
+            <ul>
+                <li>Logos by <a href="https://github.com/SAWARATSUKI/KawaiiLogos" target="_blank" rel="noopener noreferrer">SAWARATSUKI</a> (CC BY-NC 4.0)</li>
+                <li>Stats Cards by <a href="https://github.com/anuraghazra/github-readme-stats" target="_blank" rel="noopener noreferrer">anuraghazra</a> (MIT)</li>
+                <li>Typing SVG by <a href="https://github.com/DenverCoder1/readme-typing-svg" target="_blank" rel="noopener noreferrer">DenverCoder1</a> (MIT)</li>
+            </ul>
+        </footer>
     </div>
-    <div id="palette" role="dialog" aria-label="クイック移動">
-    <div class="palette-box">
-        <input id="paletteInput" type="text" placeholder="ページやリンクを検索..." autocomplete="off">
-        <div class="palette-list" id="paletteList"></div>
-    </div>
-</div>
-<button id="toTop" type="button" aria-label="トップへ戻る"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg></button>
+    <dialog id="palette" closedby="any" aria-label="クイック移動">
+        <div class="palette-box">
+            <div class="palette-head">
+                <input id="paletteInput" type="text" placeholder="ページやコマンドを検索..." autocomplete="off" aria-label="ページやコマンドを検索">
+                <button type="button" class="palette-close" id="paletteClose" aria-label="閉じる">Esc</button>
+            </div>
+            <div class="palette-list" id="paletteList" role="listbox" aria-label="検索結果"></div>
+        </div>
+    </dialog>
+    <div id="toastRegion" role="region" aria-label="通知"></div>
+    <div id="toastLive" class="sr-only" aria-live="polite"></div>
+    <button id="toTop" type="button" aria-label="トップへ戻る"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg></button>
     <script src="js/script.js"></script>
 </body>
 </html>
